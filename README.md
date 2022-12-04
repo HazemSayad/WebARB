@@ -2,6 +2,20 @@
 
 This is a repo to help with translating small to medium Flutter projects that use the .arb files for internationalization
 
+# TODO
+
+- [ ] Support for simple messages (key-value pairs)
+- [ ] Support for `@message` symbol messages (eg: `@helloWorld`)
+  - [ ] Add support for `description`
+  - [ ] Add support for `placeholders`
+    - [ ] Add support for `value - type`
+      - [ ] Add support for `value - type: int`
+      - [ ] Add support for `value - type: DateTime`
+    - [ ] Add support for `value - format`
+    - [ ] Add support for `value - optionalParameters`
+    - [ ] Add support for `messages with plurals`
+- [ ] File name locale detecion support
+
 # Philosophy Behind WebARB
 
 What is the most common thing on every machine that a non-technical person use frequently with ease?
@@ -49,3 +63,7 @@ WebARB runs in the browser, so here is how you can run/use it:
 - Visit [hazemsayad.github.io/WebARB](https://hazemsayad.github.io/WebARB/)
 - Download the project and open `index.html`
 - Clone the repo to your internationalization directory so it will stay up to date just by simply running `git pull`
+
+# Warning!
+
+Use this tool at your own risk. Browsers can crash, OS'es can crash too, all that will render all your edits and modifications without save **lost**. So be careful!
