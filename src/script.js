@@ -1,3 +1,5 @@
+var didFileLoad = false;
+
 $(function () {
   if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
     alert("The File APIs are not fully supported in this browser.");
@@ -50,7 +52,7 @@ async function convertJsonToArb(map) {
 
 function handleSelectedFile() {
   let input = this;
-  console.log(input);
+  let id = input.id === "file-0" ? 0 : 1;
 
   if (!input.files) {
     alert(
@@ -64,24 +66,68 @@ function handleSelectedFile() {
     let text;
     fr.onload = () => {
       text = fr.result;
-      inflateHtmlFromJson(JSON.parse(text));
+      inflateHtmlFromJson(id, JSON.parse(text));
     };
     fr.readAsText(file);
   }
 }
 
-function inflateHtmlFromJson(map) {
+function inflateHtmlFromJson(id, map) {
   let rows = "";
-  console.log(map);
-  for (const key in map) {
+
+  if (!window.didFileLoad) {
+    let locale = map["@@locale"];
+    $("#table > tbody").empty();
     rows =
       rows +
-      `<tr class="entry">
+      `<tr>
+      <th class="key">Keys</th>
+      <th class="lang-0">${
+        id == 0 ? locale.toUpperCase() : "Language 1"
+      } Strings</th>
+      <th class="lang-1">${
+        id == 1 ? locale.toUpperCase() : "Language 2"
+      } Strings</th>
+     </tr>`;
+
+    for (const key in map) {
+      if (key == "@@locale") {
+        continue;
+      }
+      rows =
+        rows +
+        `<tr class="entry">
         <td class="key" id="${key}">${key}</td>
-        <td data-lang="${map["@@locale"]}">${map[key]}</td>
+        ${
+          id == 0
+            ? `<td data-lang="${map["@@locale"]}">${map[key]}</td>`
+            : `<td data-lang="null"></td>`
+        }
+        ${
+          id == 1
+            ? `<td data-lang="${map["@@locale"]}">${map[key]}</td>`
+            : `<td data-lang="null"></td>`
+        }
        </tr>`;
+    }
+    $("#table tbody").html(rows);
+  } else {
+    let locale = map["@@locale"];
+
+    for (const key in map) {
+      if (key == "@@locale") {
+        continue;
+      }
+
+      let elem = $(
+        `#${key.charAt(0) == "@" ? `\\${key}` : key} ~ td[data-lang="null"]`
+      );
+      elem.attr("data-lang", `${locale}`);
+      elem.text(`${map[key]}`);
+    }
   }
-  $("#table tr:last-child").after(rows);
+
+  window.didFileLoad = !window.didFileLoad;
 }
 
 function scrapeHtmltoJson(map) {}
