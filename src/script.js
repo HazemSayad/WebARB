@@ -77,18 +77,7 @@ function inflateHtmlFromJson(id, map) {
 
   if (!window.didFileLoad) {
     let locale = map["@@locale"];
-    $("#table > tbody").empty();
-    rows =
-      rows +
-      `<tr>
-      <th class="key">Keys</th>
-      <th class="lang-0">${
-        id == 0 ? locale.toUpperCase() : "Language 1"
-      } Strings</th>
-      <th class="lang-1">${
-        id == 1 ? locale.toUpperCase() : "Language 2"
-      } Strings</th>
-     </tr>`;
+    $(`#table > thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in map) {
       if (key == "@@locale") {
@@ -113,6 +102,8 @@ function inflateHtmlFromJson(id, map) {
     $("#table tbody").html(rows);
   } else {
     let locale = map["@@locale"];
+
+    $(`#table > thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in map) {
       if (key == "@@locale") {
