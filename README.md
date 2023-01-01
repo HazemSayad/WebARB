@@ -64,6 +64,9 @@ WebARB runs in the browser, so here is how you can run/use it:
 - Download the project and open `index.html`
 - Clone the repo to your internationalization directory so it will stay up to date just by simply running `git pull`
 
+# ARB Guidelines
+Guidelines followed while developing this tool came from this link: https://docs.google.com/document/d/10e0saTfAv32OZLRmONy866vnaw0I2jwL8zukykpgWBc/edit#heading=h.yfh1gyd78g7g
+
 # Warning!
 
 Use this tool at your own risk. Browsers can crash, OS'es can crash too, all that will render all your edits and modifications without save **lost**. So be careful!
