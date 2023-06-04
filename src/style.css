@@ -14,17 +14,6 @@ html {
   padding: 0.5em 0.1em;
 }
 
-.entry * {
-  display: inline-block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.entry > * {
-  max-width: 48%;
-}
-
 .entry > .key {
   max-width: 8%;
 }
@@ -42,6 +31,14 @@ html {
   padding-left: 1rem;
 }
 
+.main > * {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 48%;
+}
+
 .main::before {
   content: "";
   width: 0;
@@ -57,13 +54,16 @@ html {
 }
 
 .extra {
+  margin-left: 2.5rem;
 }
 
 #table {
-  background-color: hsl(0, 100%, 80%);
+  background-color: hsl(0, 0%, 95%);
   padding: 0.25em;
 }
 
 #thead * {
   display: inline-block;
+  font-weight: 900;
+  padding: 0.45rem 0.1rem;
 }
