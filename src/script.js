@@ -77,7 +77,7 @@ function inflateHtmlFromJson(id, map) {
 
   if (!window.didFileLoad) {
     let locale = map["@@locale"];
-    $(`#table > thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
+    $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in map) {
       if (key == "@@locale") {
@@ -85,25 +85,25 @@ function inflateHtmlFromJson(id, map) {
       }
       rows =
         rows +
-        `<tr class="entry">
-        <td class="key" id="${key}">${key}</td>
+        `<div class="entry">
+        <div class="key" id="${key}">${key}</div>
         ${
           id == 0
-            ? `<td data-lang="${map["@@locale"]}">${map[key]}</td>`
-            : `<td data-lang="null"></td>`
+            ? `<div data-lang="${map["@@locale"]}">${map[key]}</div>`
+            : `<div data-lang="null"></div>`
         }
         ${
           id == 1
-            ? `<td data-lang="${map["@@locale"]}">${map[key]}</td>`
-            : `<td data-lang="null"></td>`
+            ? `<div data-lang="${map["@@locale"]}">${map[key]}</div>`
+            : `<div data-lang="null"></div>`
         }
-       </tr>`;
+       </div>`;
     }
-    $("#table tbody").html(rows);
+    $("#table #tbody").html(rows);
   } else {
     let locale = map["@@locale"];
 
-    $(`#table > thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
+    $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in map) {
       if (key == "@@locale") {
