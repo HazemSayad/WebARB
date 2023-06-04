@@ -29,6 +29,36 @@ html {
   max-width: 8%;
 }
 
+.entry:nth-child(odd) {
+  background-color: lightgray;
+}
+
+.entry:nth-child(even) {
+  background-color: white;
+}
+
+.main {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.main::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 0.35rem solid transparent;
+  border-bottom: 0.35rem solid transparent;
+  border-left: 0.35rem solid black;
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.extra {
+}
+
 #table {
   background-color: hsl(0, 100%, 80%);
   padding: 0.25em;
