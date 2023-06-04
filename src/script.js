@@ -72,14 +72,14 @@ function handleSelectedFile() {
   }
 }
 
-function inflateHtmlFromJson(id, map) {
+function inflateHtmlFromJson(id, json) {
   let rows = "";
 
   if (!window.didFileLoad) {
-    let locale = map["@@locale"];
+    let locale = json["@@locale"];
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
-    for (const key in map) {
+    for (const key in json) {
       if (key == "@@locale") {
         continue;
       }
@@ -89,23 +89,23 @@ function inflateHtmlFromJson(id, map) {
         <div class="key" id="${key}">${key}</div>
         ${
           id == 0
-            ? `<div data-lang="${map["@@locale"]}">${map[key]}</div>`
+            ? `<div data-lang="${json["@@locale"]}">${json[key]}</div>`
             : `<div data-lang="null"></div>`
         }
         ${
           id == 1
-            ? `<div data-lang="${map["@@locale"]}">${map[key]}</div>`
+            ? `<div data-lang="${json["@@locale"]}">${json[key]}</div>`
             : `<div data-lang="null"></div>`
         }
        </div>`;
     }
     $("#table #tbody").html(rows);
   } else {
-    let locale = map["@@locale"];
+    let locale = json["@@locale"];
 
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
-    for (const key in map) {
+    for (const key in json) {
       if (key == "@@locale") {
         continue;
       }
@@ -114,7 +114,7 @@ function inflateHtmlFromJson(id, map) {
         `#${key.charAt(0) == "@" ? `\\${key}` : key} ~ td[data-lang="null"]`
       );
       elem.attr("data-lang", `${locale}`);
-      elem.text(`${map[key]}`);
+      elem.text(`${json[key]}`);
     }
   }
 
