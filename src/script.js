@@ -1,5 +1,9 @@
 var didFileLoad = false;
 
+let e = {
+  missingAtAtLocaleMetadataError: "ERROR: Missing @@local metadata",
+};
+
 $(function () {
   if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
     alert("The File APIs are not fully supported in this browser.");
@@ -77,39 +81,36 @@ function inflateHtmlFromJson(id, json) {
 
   if (!window.didFileLoad) {
     let locale = json["@@locale"];
+    delete json["@@locale"];
+
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
-      if (key == "@@locale") {
-        continue;
-      }
       rows =
         rows +
         `<div class="entry">
-        <div class="key" id="${key}">${key}</div>
-        ${
-          id == 0
-            ? `<div data-lang="${json["@@locale"]}">${json[key]}</div>`
-            : `<div data-lang="null"></div>`
-        }
-        ${
-          id == 1
-            ? `<div data-lang="${json["@@locale"]}">${json[key]}</div>`
-            : `<div data-lang="null"></div>`
-        }
+            <div class="key" id="${key}">${key}</div>
+            ${
+              id == 0
+                ? `<div data-lang="${locale}">${json[key]}</div>`
+                : `<div data-lang="null"></div>`
+            }
+            ${
+              id == 1
+                ? `<div data-lang="${locale}">${json[key]}</div>`
+                : `<div data-lang="null"></div>`
+            }
        </div>`;
     }
+
     $("#table #tbody").html(rows);
   } else {
     let locale = json["@@locale"];
+    delete json["@@locale"];
 
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
-      if (key == "@@locale") {
-        continue;
-      }
-
       let elem = $(
         `#${key.charAt(0) == "@" ? `\\${key}` : key} ~ td[data-lang="null"]`
       );
@@ -119,6 +120,13 @@ function inflateHtmlFromJson(id, json) {
   }
 
   window.didFileLoad = !window.didFileLoad;
+}
+
+function handleError(string, alertUser = false) {
+  console.error(string);
+  if (alertUser) {
+    alert(string);
+  }
 }
 
 function scrapeHtmltoJson(map) {}
