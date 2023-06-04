@@ -1,6 +1,6 @@
 var didFileLoad = false;
 
-let e = {
+const E = {
   missingAtAtLocaleMetadataError: "ERROR: Missing @@local metadata",
 };
 
