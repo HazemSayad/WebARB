@@ -79,35 +79,40 @@ function handleSelectedFile() {
 function inflateHtmlFromJson(id, json) {
   let rows = "";
 
-  if (!window.didFileLoad) {
-    let locale = json["@@locale"];
-    delete json["@@locale"];
+  if (!json.hasOwnProperty("@@locale")) {
+    handleError(E.missingAtAtLocaleMetadataError, true);
+    return;
+  }
 
+  const locale = json["@@locale"];
+  delete json["@@locale"];
+
+  if (!window.didFileLoad) {
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
       rows =
         rows +
         `<div class="entry">
-            <div class="key" id="${key}">${key}</div>
-            ${
-              id == 0
-                ? `<div data-lang="${locale}">${json[key]}</div>`
-                : `<div data-lang="null"></div>`
-            }
-            ${
-              id == 1
-                ? `<div data-lang="${locale}">${json[key]}</div>`
-                : `<div data-lang="null"></div>`
-            }
-       </div>`;
+            <div class="main">
+              <div class="key" id="${key}">${key}</div>
+              ${
+                id == 0
+                  ? `<div class="localized-text" data-lang="${locale}">${json[key]}</div>`
+                  : `<div class="localized-text" data-lang="null"></div>`
+              }
+              ${
+                id == 1
+                  ? `<div class="localized-text" data-lang="${locale}">${json[key]}</div>`
+                  : `<div class="localized-text" data-lang="null"></div>`
+              }
+            </div>
+            <div class="extra"></div>
+        </div>`;
     }
 
     $("#table #tbody").html(rows);
   } else {
-    let locale = json["@@locale"];
-    delete json["@@locale"];
-
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
