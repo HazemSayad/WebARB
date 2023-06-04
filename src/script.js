@@ -2,6 +2,8 @@ var didFileLoad = false;
 
 const E = {
   missingAtAtLocaleMetadataError: "ERROR: Missing @@local metadata",
+  supplementaryKeyExistsWithoutMainKeyError:
+    "ERROR: A supplementary key exists without a main key. Key: ",
 };
 
 $(function () {
@@ -87,6 +89,9 @@ function inflateHtmlFromJson(id, json) {
   const locale = json["@@locale"];
   delete json["@@locale"];
 
+  json = prepareJSON(json);
+  console.log(json);
+
   if (!window.didFileLoad) {
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
@@ -98,16 +103,18 @@ function inflateHtmlFromJson(id, json) {
               <div class="key" id="${key}">${key}</div>
               ${
                 id == 0
-                  ? `<div class="localized-text" data-lang="${locale}">${json[key]}</div>`
+                  ? `<div class="localized-text" data-lang="${locale}">${json[key].text}</div>`
                   : `<div class="localized-text" data-lang="null"></div>`
               }
               ${
                 id == 1
-                  ? `<div class="localized-text" data-lang="${locale}">${json[key]}</div>`
+                  ? `<div class="localized-text" data-lang="${locale}">${json[key].text}</div>`
                   : `<div class="localized-text" data-lang="null"></div>`
               }
             </div>
-            <div class="extra"></div>
+            <div class="extra">
+              <div>Description:</div>
+            </div>
         </div>`;
     }
 
@@ -120,7 +127,7 @@ function inflateHtmlFromJson(id, json) {
         `#${key.charAt(0) == "@" ? `\\${key}` : key} ~ td[data-lang="null"]`
       );
       elem.attr("data-lang", `${locale}`);
-      elem.text(`${json[key]}`);
+      elem.text(`${json[key].text}`);
     }
   }
 
@@ -132,6 +139,27 @@ function handleError(string, alertUser = false) {
   if (alertUser) {
     alert(string);
   }
+}
+
+function prepareJSON(json) {
+  for (const key in json) {
+    if (json.hasOwnProperty(key)) {
+      if (key.charAt(0) == "@") {
+        //check if the main key exists then inject it into extra then delete the key with @
+        let mainKey = key.substring(1);
+
+        if (!json.hasOwnProperty(mainKey)) {
+          handleError(E.supplementaryKeyExistsWithoutMainKeyError + key, true);
+          return;
+        }
+
+        json[mainKey] = { text: json[mainKey], extra: { ...json[key] } };
+        delete json[key];
+      }
+    }
+  }
+
+  return json;
 }
 
 function scrapeHtmltoJson(map) {}
