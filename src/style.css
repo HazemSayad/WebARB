@@ -10,14 +10,30 @@ html {
   margin: 0px;
 }
 
-table {
+.entry {
+  padding: 0.5em 0.1em;
+}
+
+.entry * {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.entry > * {
+  max-width: 48%;
+}
+
+.entry > .key {
+  max-width: 8%;
+}
+
+#table {
   background-color: hsl(0, 100%, 80%);
   padding: 0.25em;
 }
 
-.key {
-  max-width: 10em;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+#thead * {
+  display: inline-block;
 }
