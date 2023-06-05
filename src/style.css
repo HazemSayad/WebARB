@@ -172,7 +172,8 @@ html {
 }
 
 #table {
-  background-color: hsl(0, 0%, 95%);
+  /* flutter dash color approx */
+  background-color: hsl(190, 100%, 60%);
   padding: 0.25em;
 }
 
