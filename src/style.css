@@ -19,7 +19,7 @@ html {
 }
 
 .entry:nth-child(odd) {
-  background-color: lightgray;
+  background-color: hsl(0, 0%, 90%);
 }
 
 .entry:nth-child(even) {
@@ -45,6 +45,40 @@ html {
   display: none;
   border-left: 0.1rem solid black;
   border-bottom: 0.1rem solid black;
+}
+
+.placeholders {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  padding: 0.5rem;
+  display: none;
+  border-left: 0.1rem solid black;
+  border-bottom: 0.1rem solid black;
+}
+
+.placeholders > ul {
+  margin-left: 1rem;
+}
+
+.placeholders-label {
+  margin-left: 1rem;
+}
+
+.placeholder-type {
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: white;
+  display: inline-block;
+  background-color: hsl(0, 0%, 60%);
+  padding: 0rem 0.25rem;
+  border: hsl(0, 0%, 60%) solid 0.1rem;
+  border-radius: 0.2rem;
+  transform: translateY(-25%);
+}
+
+.placeholder-type.int {
+  background-color: hsl(111, 60%, 60%);
+  border-color: hsl(111, 60%, 60%);
 }
 
 .arrow {
