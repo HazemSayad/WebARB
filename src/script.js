@@ -90,7 +90,6 @@ function inflateHtmlFromJson(id, json) {
   delete json["@@locale"];
 
   json = prepareJSON(json);
-  console.log(json);
 
   if (!window.didFileLoad) {
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
@@ -99,6 +98,7 @@ function inflateHtmlFromJson(id, json) {
       rows =
         rows +
         `<div class="entry">
+            <div class="arrow"></div>
             <div class="main">
               <div class="key" id="${key}">${key}</div>
               ${
@@ -133,6 +133,8 @@ function inflateHtmlFromJson(id, json) {
     }
   }
 
+  makeElementClickable();
+
   window.didFileLoad = !window.didFileLoad;
 }
 
@@ -162,6 +164,13 @@ function prepareJSON(json) {
   }
 
   return json;
+}
+
+function makeElementClickable() {
+  $(".arrow").on("click", function () {
+    // Call your custom function here
+    $(this).toggleClass("down");
+  });
 }
 
 function scrapeHtmltoJson(map) {}
