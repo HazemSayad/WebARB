@@ -112,11 +112,23 @@ function inflateHtmlFromJson(id, json) {
                   : `<div class="localized-text" data-lang="null"></div>`
               }
             </div>
-            <div class="extra">
-              <div class="description">Description: ${
-                json[key]?.extra?.description
-              }</div>
-            </div>
+            ${
+              json[key]?.extra
+                ? `<div class="extra">
+                    ${
+                      json[key]?.extra?.description
+                        ? `<div class="description">Description: ${json[key].extra.description}</div>`
+                        : ``
+                    }
+                    ${
+                      json[key]?.extra?.placeholders
+                        ? `<div class="placeholders">Placeholders: ${json[key].extra.placeholders}</div>`
+                        : ``
+                    }
+                  </div>`
+                : ``
+            }
+            
         </div>`;
     }
 
