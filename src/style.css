@@ -39,8 +39,12 @@ html {
 }
 
 .extra {
-  margin-left: 2.5rem;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  padding: 0.5rem;
   display: none;
+  border-left: 0.1rem solid black;
+  border-bottom: 0.1rem solid black;
 }
 
 .arrow {
