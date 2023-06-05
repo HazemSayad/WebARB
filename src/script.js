@@ -113,7 +113,7 @@ function inflateHtmlFromJson(id, json) {
               }
             </div>
             <div class="extra">
-              <div>Description:</div>
+              <div>Description: ${json[key]?.extra?.description}</div>
             </div>
         </div>`;
     }
