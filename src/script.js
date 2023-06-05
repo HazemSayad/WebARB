@@ -4,6 +4,7 @@ const E = {
   missingAtAtLocaleMetadataError: "ERROR: Missing @@local metadata",
   supplementaryKeyExistsWithoutMainKeyError:
     "ERROR: A supplementary key exists without a main key. Key: ",
+  placeholderTypeUndefinedError: "Placeholder Type Undefined Error. Key: ",
 };
 
 $(function () {
@@ -116,13 +117,23 @@ function inflateHtmlFromJson(id, json) {
               json[key]?.extra
                 ? `<div class="extra">
                     ${
-                      json[key]?.extra?.description
+                      json[key].extra?.description
                         ? `<div class="description">Description: ${json[key].extra.description}</div>`
                         : ``
                     }
                     ${
-                      json[key]?.extra?.placeholders
-                        ? `<div class="placeholders">Placeholders: ${json[key].extra.placeholders}</div>`
+                      json[key].extra?.placeholders
+                        ? `
+                          <div class="arrow"></div>
+                          <div class="placeholders-label">Placeholders</div>
+                          <div class="placeholders">
+                            <ul>
+                              ${placeholdersToListItems(
+                                json[key].extra.placeholders
+                              )}
+                            </ul>
+                          </div>
+                          `
                         : ``
                     }
                   </div>`
@@ -186,6 +197,37 @@ function makeArrowClickable() {
     let extraElement = arrowElement.next().next();
     extraElement.toggle();
   });
+}
+
+function placeholdersToListItems(placeholders) {
+  let listItems = "";
+  for (const key in placeholders) {
+    if (placeholders.hasOwnProperty(key)) {
+      const placeholder = placeholders[key];
+      listItems += `
+      <li data-key="${key}">${key}
+      ${
+        placeholder?.type
+          ? `<div
+          class="placeholder-type ${placeholder.type}"
+          data-placeholder-type="${placeholder.type}"
+        >
+          ${placeholder.type}
+        </div>`
+          : handleError(E.placeholderTypeUndefinedError + key, true)
+      }
+        
+        ${
+          placeholder?.example
+            ? `<div class="placeholder-example"><i>example:</i> ${placeholder.example}</div>`
+            : ``
+        }
+      </li>`;
+    }
+  }
+  console.log("listItems");
+
+  return listItems;
 }
 
 function scrapeHtmltoJson(map) {}
