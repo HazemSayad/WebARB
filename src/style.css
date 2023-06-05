@@ -86,6 +86,11 @@ html {
   border-color: hsl(200, 60%, 60%);
 }
 
+.placeholder-type.DateTime {
+  background-color: hsl(50, 60%, 60%);
+  border-color: hsl(50, 60%, 60%);
+}
+
 .arrow {
   position: relative;
 }
