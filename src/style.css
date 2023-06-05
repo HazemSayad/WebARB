@@ -27,7 +27,6 @@ html {
 }
 
 .main {
-  position: relative;
   padding-left: 1rem;
 }
 
@@ -39,22 +38,32 @@ html {
   max-width: 48%;
 }
 
-.main::before {
+.extra {
+  margin-left: 2.5rem;
+  display: none;
+}
+
+.arrow {
+  position: relative;
+}
+
+.arrow::before {
   content: "";
   width: 0;
   height: 0;
   border-top: 0.35rem solid transparent;
   border-bottom: 0.35rem solid transparent;
+  border-right: 0.35rem solid transparent;
   border-left: 0.35rem solid black;
   position: absolute;
   top: 50%;
   left: 0px;
-  transform: translateY(-50%);
+  transform: translateY(50%);
   cursor: pointer;
 }
 
-.extra {
-  margin-left: 2.5rem;
+.arrow.down::before {
+  transform: translateY(50%) rotate(90deg);
 }
 
 #table {
