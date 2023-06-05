@@ -133,7 +133,7 @@ function inflateHtmlFromJson(id, json) {
     }
   }
 
-  makeElementClickable();
+  makeArrowClickable();
 
   window.didFileLoad = !window.didFileLoad;
 }
@@ -166,10 +166,13 @@ function prepareJSON(json) {
   return json;
 }
 
-function makeElementClickable() {
+function makeArrowClickable() {
   $(".arrow").on("click", function () {
     // Call your custom function here
-    $(this).toggleClass("down");
+    let arrowElement = $(this);
+    arrowElement.toggleClass("down");
+    let extraElement = arrowElement.next().next();
+    extraElement.toggle();
   });
 }
 
