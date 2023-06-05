@@ -12,6 +12,7 @@ html {
 
 .entry {
   padding: 0.5em 0.1em;
+  position: relative;
 }
 
 .entry > .key {
@@ -43,8 +44,8 @@ html {
   margin-right: 1.25rem;
   padding: 0.5rem;
   display: none;
-  border-left: 0.1rem solid black;
-  border-bottom: 0.1rem solid black;
+  border-left: 0.1rem solid hsl(0, 0%, 50%);
+  border-bottom: 0.1rem solid hsl(0, 0%, 50%);
 }
 
 .placeholders {
@@ -52,8 +53,8 @@ html {
   margin-right: 1.25rem;
   padding: 0.5rem;
   display: none;
-  border-left: 0.1rem solid black;
-  border-bottom: 0.1rem solid black;
+  border-left: 0.1rem solid hsl(0, 0%, 50%);
+  border-bottom: 0.1rem solid hsl(0, 0%, 50%);
 }
 
 .placeholders > ul {
@@ -112,6 +113,62 @@ html {
 
 .arrow.down::before {
   transform: translateY(50%) rotate(90deg);
+}
+
+.kebab {
+  cursor: pointer;
+  position: absolute;
+  display: inline-block;
+  padding: 0rem 1rem;
+  top: 0.25rem;
+  right: 0.25rem;
+}
+
+.kebab figure {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 100%;
+  background: hsl(0, 0%, 30%);
+  margin: 0.2rem 0rem;
+}
+
+.dropdown {
+  background-color: hsl(0, 0%, 100%);
+  position: absolute;
+  right: 100%;
+  top: 0.5em;
+  display: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+}
+
+.dropdown li {
+  display: block;
+  width: 100%;
+}
+
+.dropdown li * {
+  width: 100%;
+  padding: 1em 2em;
+  display: inline-block;
+  white-space: pre;
+}
+
+.dropdown li *:hover {
+  background: hsl(0, 0%, 90%);
+}
+
+.dropdown.active {
+  z-index: 1;
+  display: block;
+}
+
+.delete-button {
+  background-color: hsl(0, 90%, 60%);
+  color: hsl(0, 0%, 100%);
+}
+
+.dropdown li .delete-button:hover {
+  background-color: hsl(0, 60%, 45%);
 }
 
 #table {
