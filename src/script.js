@@ -99,6 +99,15 @@ function inflateHtmlFromJson(id, json) {
       rows =
         rows +
         `<div class="entry">
+            <div class="kebab">
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <ul class="dropdown">
+                <li><div>Edit</div></li>
+                <li><div class="delete-button">Delete</div></li>
+              </ul>
+            </div>
             <div class="arrow"></div>
             <div class="main">
               <div class="key" id="${key}">${key}</div>
@@ -157,6 +166,7 @@ function inflateHtmlFromJson(id, json) {
   }
 
   makeArrowClickable();
+  makeKebabClickable();
 
   window.didFileLoad = !window.didFileLoad;
 }
@@ -199,6 +209,14 @@ function makeArrowClickable() {
   });
 }
 
+function makeKebabClickable() {
+  let kebab = $(".kebab");
+  kebab.on("click", function () {
+    let dropdown = $(this).children().last();
+    dropdown.toggleClass("active");
+  });
+}
+
 function placeholdersToListItems(placeholders) {
   let listItems = "";
   for (const key in placeholders) {
@@ -225,7 +243,6 @@ function placeholdersToListItems(placeholders) {
       </li>`;
     }
   }
-  console.log("listItems");
 
   return listItems;
 }
