@@ -96,60 +96,7 @@ function inflateHtmlFromJson(id, json) {
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
-      rows =
-        rows +
-        `<div class="entry">
-            <div class="kebab">
-              <figure></figure>
-              <figure></figure>
-              <figure></figure>
-              <ul class="dropdown">
-                <li><div>Edit</div></li>
-                <li><div class="delete-button">Delete</div></li>
-              </ul>
-            </div>
-            <div class="arrow"></div>
-            <div class="main">
-              <div class="key" id="${key}">${key}</div>
-              ${
-                id == 0
-                  ? `<div class="localized-text" data-lang="${locale}">${json[key].text}</div>`
-                  : `<div class="localized-text" data-lang="null"></div>`
-              }
-              ${
-                id == 1
-                  ? `<div class="localized-text" data-lang="${locale}">${json[key].text}</div>`
-                  : `<div class="localized-text" data-lang="null"></div>`
-              }
-            </div>
-            ${
-              json[key]?.extra
-                ? `<div class="extra">
-                    ${
-                      json[key].extra?.description
-                        ? `<div class="description">Description: ${json[key].extra.description}</div>`
-                        : ``
-                    }
-                    ${
-                      json[key].extra?.placeholders
-                        ? `
-                          <div class="arrow"></div>
-                          <div class="placeholders-label">Placeholders</div>
-                          <div class="placeholders">
-                            <ul>
-                              ${placeholdersToListItems(
-                                json[key].extra.placeholders
-                              )}
-                            </ul>
-                          </div>
-                          `
-                        : ``
-                    }
-                  </div>`
-                : ``
-            }
-            
-        </div>`;
+      rows = rows + createEntryFromKeyJSON(locale, key, json);
     }
 
     $("#table #tbody").html(rows);
@@ -167,6 +114,7 @@ function inflateHtmlFromJson(id, json) {
 
   makeArrowClickable();
   makeKebabClickable();
+  makeDropdownEditButtonClickable();
 
   window.didFileLoad = !window.didFileLoad;
 }
@@ -215,6 +163,72 @@ function makeKebabClickable() {
     let dropdown = $(this).children().last();
     dropdown.toggleClass("active");
   });
+}
+
+function makeDropdownEditButtonClickable() {
+  let editButton = $(".edit-button");
+  editButton.on("click", function () {
+    let button = $(this);
+    let entry = button.parentsUntil("#tbody", ".entry");
+    console.log(entry);
+  });
+}
+
+function extractDataFromEntryToJSON(entry) {}
+
+function createEntryFromKeyJSON(locale, key, json) {
+  return `<div class="entry">
+            <div class="kebab">
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <ul class="dropdown">
+                <li><div class="edit-button">Edit</div></li>
+                <li><div class="delete-button">Delete</div></li>
+              </ul>
+            </div>
+            <div class="arrow"></div>
+            <div class="main">
+              <div class="key" id="${key}">${key}</div>
+              ${
+                id == 0
+                  ? `<div class="localized-text" data-lang="${locale}">${json[key].text}</div>`
+                  : `<div class="localized-text" data-lang="null"></div>`
+              }
+              ${
+                id == 1
+                  ? `<div class="localized-text" data-lang="${locale}">${json[key].text}</div>`
+                  : `<div class="localized-text" data-lang="null"></div>`
+              }
+            </div>
+            ${
+              json[key]?.extra
+                ? `<div class="extra">
+                    ${
+                      json[key].extra?.description
+                        ? `<div class="description">Description: ${json[key].extra.description}</div>`
+                        : ``
+                    }
+                    ${
+                      json[key].extra?.placeholders
+                        ? `
+                          <div class="arrow"></div>
+                          <div class="placeholders-label">Placeholders</div>
+                          <div class="placeholders">
+                            <ul>
+                              ${placeholdersToListItems(
+                                json[key].extra.placeholders
+                              )}
+                            </ul>
+                          </div>
+                          `
+                        : ``
+                    }
+                  </div>`
+                : ``
+            }
+            
+        </div>`;
 }
 
 function placeholdersToListItems(placeholders) {
