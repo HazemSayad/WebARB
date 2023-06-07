@@ -231,3 +231,60 @@ html {
   font-weight: 900;
   padding: 0.45rem 0.1rem;
 }
+
+#edit-key-modal-dialog {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+  background-color: hsla(0, 0%, 50%, 0.7);
+  display: none;
+}
+
+#edit-key-modal-dialog.active-modal-dialog {
+  display: block;
+}
+
+#modal-dialog-close-button {
+  cursor: pointer;
+  color: hsl(0, 0%, 40%);
+  font-weight: 900;
+  font-size: 1.5rem;
+  float: right;
+  line-height: 1;
+  text-align: center;
+}
+
+#dialog-placeholders-container {
+  float: right;
+  width: calc(30% - 2.5rem);
+  padding: 0.5rem;
+  word-wrap: break-word;
+  margin-right: 1rem;
+}
+
+#modal-dialog-close-button:hover {
+  color: hsl(0, 0%, 25%);
+}
+
+#edit-dialog {
+  background-color: hsl(0, 0%, 100%);
+  height: 75%;
+  width: 75%;
+  margin: auto;
+  margin-top: calc((100% - 75%) / 4);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  overflow: auto;
+  box-shadow: 0rem 0rem 1.5rem hsl(0, 0%, 30%);
+}
+
+#save-entry {
+  background-color: hsl(111, 60%, 60%);
+  border: hsl(111, 60%, 60%) solid 0.1rem;
+  cursor: pointer;
+}
+#save-entry:hover {
+  background-color: hsl(111, 60%, 45%);
+  border: hsl(111, 60%, 45%) solid 0.1rem;
+}
