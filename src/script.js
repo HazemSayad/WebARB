@@ -92,6 +92,8 @@ function inflateHtmlFromJson(id, json) {
   const locale = json["@@locale"];
   delete json["@@locale"];
 
+  id == 0 ? (lang0locale = locale) : (lang1locale = locale);
+
   json = prepareJSON(json);
 
   if (!window.didFileLoad) {
