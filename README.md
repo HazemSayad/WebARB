@@ -10,6 +10,8 @@ This is a repo to help with translating small to medium Flutter projects that us
   - [ ] Add support for `placeholders`
     - [ ] Add support for `value - type`
       - [ ] Add support for `value - type: int`
+      - [ ] Add support for `value - type: double`
+      - [ ] Add support for `value - type: number`
       - [ ] Add support for `value - type: DateTime`
     - [ ] Add support for `value - format`
     - [ ] Add support for `value - optionalParameters`
@@ -65,6 +67,7 @@ WebARB runs in the browser, so here is how you can run/use it:
 - Clone the repo to your internationalization directory so it will stay up to date just by simply running `git pull`
 
 # ARB Guidelines
+
 Guidelines followed while developing this tool came from this link: https://docs.google.com/document/d/10e0saTfAv32OZLRmONy866vnaw0I2jwL8zukykpgWBc
 
 # Warning!
