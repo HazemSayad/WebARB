@@ -13,6 +13,32 @@
     <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
+    <div id="edit-key-modal-dialog">
+      <div id="edit-dialog">
+        <span id="modal-dialog-close-button">&times;</span>
+        <span id="dialog-placeholders-container">
+          <div class="arrow"></div>
+          <div class="placeholders-label">Placeholders</div>
+          <div class="placeholders">
+            <ul></ul>
+          </div>
+        </span>
+        <div class="dialog-key" id="save-entry">Save</div>
+        <div class="dialog-key message-key">key</div>
+        <div class="dialog-lang" data-lang="lang-0">lang-0</div>
+        <textarea
+          class="dialog-lang-textarea"
+          name="lang-0"
+          id="lang-0"
+        ></textarea>
+        <div class="dialog-lang" data-lang="lang-1">lang-1</div>
+        <textarea
+          class="dialog-lang-textarea"
+          name="lang-1"
+          id="lang-1"
+        ></textarea>
+      </div>
+    </div>
     <div class="top-ribbon">
       <label for="file-0">file-0</label>
       <input id="file-0" type="file" />
