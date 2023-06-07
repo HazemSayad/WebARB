@@ -11,13 +11,23 @@ html {
   margin: 0px;
 }
 
+#thead > .tr {
+  width: 100%;
+}
+
+#thead > .tr > .key {
+  width: 8%;
+  padding-left: 1rem;
+}
+
 .entry {
   padding: 0.5em 0.1em;
   position: relative;
 }
 
-.entry > .key {
-  max-width: 8%;
+.main > .key {
+  width: 8%;
+  letter-spacing: -0.05rem;
 }
 
 .entry:nth-child(odd) {
@@ -36,6 +46,7 @@ html {
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
+  word-wrap: anywhere;
   white-space: nowrap;
   max-width: 48%;
 }
@@ -170,6 +181,10 @@ html {
 
 .dropdown li .delete-button:hover {
   background-color: hsl(0, 60%, 45%);
+}
+
+.active-long-text-wrapping {
+  white-space: normal;
 }
 
 #table {
