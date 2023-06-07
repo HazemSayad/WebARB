@@ -1,4 +1,6 @@
 var didFileLoad = false;
+var lang0locale;
+var lang1locale;
 
 const E = {
   missingAtAtLocaleMetadataError: "ERROR: Missing @@local metadata",
