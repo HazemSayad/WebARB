@@ -180,7 +180,38 @@ function makeDropdownEditButtonClickable() {
   });
 }
 
-function extractDataFromEntryToJSON(entry) {}
+function extractDataFromEntryToJSON(entry) {
+  let main = entry.children(".main");
+  let extra = entry.children(".extra");
+
+  const key = main.children(".key").text();
+  const lang0 = $(main.children(".localized-text")["0"]).text();
+  const lang1 = $(main.children(".localized-text")["1"]).text();
+
+  const description = $(extra.children(".description"))
+    .text()
+    .replace(/^Description:\s/g, "");
+
+  let placeholdersListItems = extra.find("li[data-key]");
+  let placeholders = {};
+
+  placeholdersListItems.each(function () {
+    let li = $(this);
+    let key = li.data("key");
+    let type = li.children(".placeholder-type").data("placeholder-type");
+    let example = $(li.children(".placeholder-example"))
+      .text()
+      .replace(/^example:\s/g, "");
+    placeholders[key] = { type, example };
+  });
+
+  let json0 = {};
+  let json1 = {};
+  json0[key] = { text: lang0, extra: { description, placeholders } };
+  json1[key] = { text: lang1, extra: { description, placeholders } };
+
+  return [json0, json1];
+}
 
 function createEntryFromKeyJSON(id, locale, key, json) {
   return `<div class="entry">
