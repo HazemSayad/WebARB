@@ -100,7 +100,7 @@ function inflateHtmlFromJson(id, json) {
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
-      rows = rows + createEntryFromKeyJSON(locale, key, json);
+      rows = rows + createEntryFromKeyJSON(id, locale, key, json);
     }
 
     $("#table #tbody").html(rows);
@@ -108,6 +108,7 @@ function inflateHtmlFromJson(id, json) {
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
+      //FIXME: the below is trying to select the @keys when they should not be any @key
       let elem = $(
         `#${key.charAt(0) == "@" ? `\\${key}` : key} ~ td[data-lang="null"]`
       );
@@ -153,7 +154,6 @@ function prepareJSON(json) {
 
 function makeArrowClickable() {
   $(".arrow").on("click", function () {
-    // Call your custom function here
     let arrowElement = $(this);
     arrowElement.toggleClass("down");
     let mainElement = arrowElement.next();
@@ -182,8 +182,9 @@ function makeDropdownEditButtonClickable() {
 
 function extractDataFromEntryToJSON(entry) {}
 
-function createEntryFromKeyJSON(locale, key, json) {
+function createEntryFromKeyJSON(id, locale, key, json) {
   return `<div class="entry">
+
             <div class="kebab">
               <figure></figure>
               <figure></figure>
