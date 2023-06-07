@@ -152,7 +152,9 @@ function makeArrowClickable() {
     // Call your custom function here
     let arrowElement = $(this);
     arrowElement.toggleClass("down");
-    let extraElement = arrowElement.next().next();
+    let mainElement = arrowElement.next();
+    let extraElement = mainElement.next();
+    mainElement.children().toggleClass("active-long-text-wrapping");
     extraElement.toggle();
   });
 }
