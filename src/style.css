@@ -43,6 +43,7 @@ html {
 }
 
 .main > * {
+  vertical-align: top;
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
