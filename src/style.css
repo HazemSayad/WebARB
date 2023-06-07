@@ -189,6 +189,37 @@ html {
   white-space: normal;
 }
 
+.dialog-key {
+  display: inline-block;
+  margin-right: 0.25rem;
+  width: fit-content;
+  font-size: 1rem;
+  font-weight: 900;
+  background-color: hsl(190, 100%, 60%);
+  padding: 0.15rem 0.75rem;
+  border: hsl(190, 100%, 60%) solid 0.1rem;
+  border-radius: 0.2rem;
+  /* transform: translateY(-25%); */
+}
+
+.dialog-lang {
+  font-size: 1.15rem;
+  padding: 0.5rem 0rem;
+  font-weight: 900;
+  margin-top: 1.25rem;
+}
+
+.dialog-lang-textarea {
+  font-size: 1rem;
+  min-width: 50%;
+  max-width: 70%;
+  min-height: 10rem;
+}
+
+.blurred {
+  filter: blur(10px);
+}
+
 #table {
   /* flutter dash color approx */
   background-color: hsl(190, 100%, 60%);
