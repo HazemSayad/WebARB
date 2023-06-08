@@ -299,6 +299,11 @@ function placeholdersToListItems(placeholders) {
   return listItems;
 }
 
+function toggleModalDialogVisibility() {
+  $("#edit-key-modal-dialog").toggleClass("active-modal-dialog");
+  toggleBlurAllButSelector("#edit-key-modal-dialog");
+}
+
 function makeCloseButtonModalDialogClickable() {
   $("#modal-dialog-close-button").on("click", function () {
     toggleModalDialogVisibility();
