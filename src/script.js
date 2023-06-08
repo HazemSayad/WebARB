@@ -108,19 +108,18 @@ function inflateHtmlFromJson(id, json) {
     $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
-      //FIXME: the below is trying to select the @keys when they should not be any @key
-      let elem = $(
-        `#${key.charAt(0) == "@" ? `\\${key}` : key} ~ td[data-lang="null"]`
-      );
+      let elem = $(`#${key} ~ div[data-lang="null"]`);
       elem.attr("data-lang", `${locale}`);
       elem.text(`${json[key].text}`);
     }
   }
 
-  makeArrowClickable();
-  makeKebabClickable();
-  makeDropdownEditButtonClickable();
-  makeCloseButtonModalDialogClickable();
+  if (!window.didFileLoad) {
+    makeArrowClickable();
+    makeKebabClickable();
+    makeDropdownEditButtonClickable();
+    makeCloseButtonModalDialogClickable();
+  }
 
   window.didFileLoad = !window.didFileLoad;
 }
@@ -178,7 +177,6 @@ function makeDropdownEditButtonClickable() {
     let button = $(this);
     let entry = button.parentsUntil("#tbody", ".entry");
     let [json0, json1] = extractDataFromEntryToJSON(entry);
-    //TODO: use the json returned to create the edit entry modal dialog
     fillModalFieldsWithJSONEntryData(json0, json1);
     toggleModalDialogVisibility();
   });
