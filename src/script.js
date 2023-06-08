@@ -177,7 +177,10 @@ function makeDropdownEditButtonClickable() {
   editButton.on("click", function () {
     let button = $(this);
     let entry = button.parentsUntil("#tbody", ".entry");
-    console.log(entry);
+    let [json0, json1] = extractDataFromEntryToJSON(entry);
+    //TODO: use the json returned to create the edit entry modal dialog
+    fillModalFieldsWithJSONEntryData(json0, json1);
+    toggleModalDialogVisibility();
   });
 }
 
