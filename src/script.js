@@ -120,6 +120,7 @@ function inflateHtmlFromJson(id, json) {
   makeArrowClickable();
   makeKebabClickable();
   makeDropdownEditButtonClickable();
+  makeCloseButtonModalDialogClickable();
 
   window.didFileLoad = !window.didFileLoad;
 }
@@ -225,7 +226,9 @@ function createEntryFromKeyJSON(id, locale, key, json) {
                 <li><div class="delete-button">Delete</div></li>
               </ul>
             </div>
+
             <div class="arrow"></div>
+
             <div class="main">
               <div class="key" id="${key}">${key}</div>
               ${
