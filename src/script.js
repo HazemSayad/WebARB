@@ -269,7 +269,7 @@ function createEntryFromKeyJSON(id, locale, key, json) {
                 : ``
             }
             
-        </div>`;
+        </div>`.replace(/\>\s+\</g, "><");
 }
 
 function placeholdersToListItems(placeholders) {
