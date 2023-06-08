@@ -305,6 +305,10 @@ function makeCloseButtonModalDialogClickable() {
   });
 }
 
+function toggleBlurAllButSelector(selector) {
+  $(`body > *:not(${selector})`).toggleClass("blurred");
+}
+
 function fillModalFieldsWithJSONEntryData(json0, json1) {
   const key = Object.keys(json0)[0];
   const lang0 = json0[key].text;
