@@ -305,4 +305,30 @@ function makeCloseButtonModalDialogClickable() {
   });
 }
 
+function fillModalFieldsWithJSONEntryData(json0, json1) {
+  const key = Object.keys(json0)[0];
+  const lang0 = json0[key].text;
+  const lang1 = json1[key].text;
+  const placeholdersListItems = placeholdersToListItems(
+    json0[key].extra.placeholders
+  );
+
+  let editDialog = $("#edit-dialog");
+  let dialogTitleMessageKey = editDialog.children(".dialog-key.message-key");
+  let textArea0 = editDialog.children("textarea#lang-0");
+  let textArea1 = editDialog.children("textarea#lang-1");
+  let lang0Label = editDialog.children('.dialog-lang[data-lang="lang-0"]');
+  let lang1Label = editDialog.children('.dialog-lang[data-lang="lang-1"]');
+  let placeholdersList = editDialog.find(
+    "#dialog-placeholders-container > .placeholders > ul"
+  );
+
+  $(dialogTitleMessageKey).text(key);
+  $(textArea0).val(lang0);
+  $(textArea1).val(lang1);
+  $(lang0Label).text(lang0locale?.toUpperCase());
+  $(lang1Label).text(lang1locale?.toUpperCase());
+  $(placeholdersList).html(placeholdersListItems);
+}
+
 function scrapeHtmltoJson(map) {}
