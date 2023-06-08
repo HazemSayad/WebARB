@@ -299,4 +299,10 @@ function placeholdersToListItems(placeholders) {
   return listItems;
 }
 
+function makeCloseButtonModalDialogClickable() {
+  $("#modal-dialog-close-button").on("click", function () {
+    toggleModalDialogVisibility();
+  });
+}
+
 function scrapeHtmltoJson(map) {}
