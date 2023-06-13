@@ -11,15 +11,6 @@ html {
   margin: 0px;
 }
 
-#thead > .tr {
-  width: 100%;
-}
-
-#thead > .tr > .key {
-  width: 8%;
-  padding-left: 1rem;
-}
-
 .entry {
   padding: 0.5em 0.1em;
   position: relative;
@@ -27,7 +18,8 @@ html {
 
 .main > .key {
   padding-right: 0.5rem;
-  width: 8%;
+  min-width: 10%;
+  flex-basis: 10%;
   letter-spacing: -0.05rem;
 }
 
@@ -40,7 +32,9 @@ html {
 }
 
 .main {
+  display: flex;
   padding-left: 1rem;
+  padding-right: 1.5rem;
 }
 
 .main > * {
@@ -51,6 +45,11 @@ html {
   word-wrap: anywhere;
   white-space: nowrap;
   max-width: 48%;
+}
+
+.main > .localized-text {
+  flex-grow: 1;
+  padding-right: 1rem;
 }
 
 .extra {
@@ -223,13 +222,7 @@ html {
 #table {
   /* flutter dash color approx */
   background-color: hsl(190, 100%, 60%);
-  padding: 0.25rem 0.3rem;
-}
-
-#thead * {
-  display: inline-block;
-  font-weight: 900;
-  padding: 0.45rem 0.1rem;
+  padding: 0.25rem 0.3rem 4rem;
 }
 
 #edit-key-modal-dialog {
@@ -287,4 +280,28 @@ html {
 #save-entry:hover {
   background-color: hsl(111, 60%, 45%);
   border: hsl(111, 60%, 45%) solid 0.1rem;
+}
+
+#thead * {
+  display: inline-block;
+  font-weight: 900;
+  padding: 0.45rem 0rem;
+}
+
+#thead > .tr {
+  width: 100%;
+  display: flex;
+  padding-left: 1rem;
+  padding-right: 1.5rem;
+}
+
+#thead > .tr > [class|="lang"] {
+  flex-grow: 1;
+  padding-right: 1rem;
+}
+
+#thead > .tr > .key {
+  min-width: 10%;
+  flex-basis: 10%;
+  padding-right: 0.5rem;
 }
