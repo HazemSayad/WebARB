@@ -167,7 +167,11 @@ function makeKebabClickable() {
   let kebab = $(".kebab");
   kebab.on("click", function () {
     let dropdown = $(this).children().last();
-    dropdown.toggleClass("active");
+    let isClickedOnDropdownActive = dropdown.hasClass("active");
+    $(".dropdown.active").removeClass("active");
+    if (!isClickedOnDropdownActive) {
+      dropdown.addClass("active");
+    }
   });
 }
 
