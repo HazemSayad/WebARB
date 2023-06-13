@@ -117,6 +117,7 @@ function inflateHtmlFromJson(id, json) {
   if (!window.didFileLoad) {
     makeArrowClickable();
     makeKebabClickable();
+    makeSaveEntryClickable();
     makeDropdownEditButtonClickable();
     makeCloseButtonModalDialogClickable();
   }
@@ -175,6 +176,19 @@ function makeKebabClickable() {
   });
 }
 
+function makeSaveEntryClickable() {
+  let saveEntryButton = $("#save-entry");
+  saveEntryButton.on("click", function () {
+    let editDialog = $("#edit-dialog");
+    let messageKey = editDialog.children(".dialog-key.message-key").text();
+    let lang0 = editDialog.children("#lang-0").val();
+    let lang1 = editDialog.children("#lang-1").val();
+
+    updateEntryLocaleStringsByKey(messageKey, lang0, lang1);
+    toggleModalDialogVisibility();
+  });
+}
+
 function makeDropdownEditButtonClickable() {
   let editButton = $(".edit-button");
   editButton.on("click", function () {
@@ -184,6 +198,15 @@ function makeDropdownEditButtonClickable() {
     fillModalFieldsWithJSONEntryData(json0, json1);
     toggleModalDialogVisibility();
   });
+}
+
+function updateEntryLocaleStringsByKey(key, lang0, lang1) {
+  let keyElement = $(`#${key}`);
+  let lang0Element = keyElement.next();
+  let lang1Element = lang0Element.next();
+
+  lang0Element.text(lang0);
+  lang1Element.text(lang1);
 }
 
 function extractDataFromEntryToJSON(entry) {
