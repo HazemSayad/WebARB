@@ -44,7 +44,7 @@ html {
   overflow: hidden;
   word-wrap: anywhere;
   white-space: nowrap;
-  max-width: 48%;
+  max-width: 45%;
 }
 
 .main > .localized-text {
