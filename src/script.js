@@ -343,5 +343,3 @@ function fillModalFieldsWithJSONEntryData(json0, json1) {
   $(lang1Label).text(lang1locale?.toUpperCase());
   $(placeholdersList).html(placeholdersListItems);
 }
-
-function scrapeHtmltoJson(map) {}
