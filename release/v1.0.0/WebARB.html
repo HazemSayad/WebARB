@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebARB</title>
+    <link
+      rel="shortcut icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iNzguMDgxNzE4bW0iCiAgIGhlaWdodD0iNDAuMzczNDIxbW0iCiAgIHZpZXdCb3g9IjAgMCA3OC4wODE3MTggNDAuMzczNDIiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzUzMjQiCiAgIHhtbDpzcGFjZT0icHJlc2VydmUiCiAgIGlua3NjYXBlOmV4cG9ydC1maWxlbmFtZT0id2ViYXJiLWZhdmljb24uc3ZnIgogICBpbmtzY2FwZTpleHBvcnQteGRwaT0iOTYiCiAgIGlua3NjYXBlOmV4cG9ydC15ZHBpPSI5NiIKICAgc29kaXBvZGk6ZG9jbmFtZT0id2ViYXJiLWJhbm5lci5zdmciCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXc1MzI2IgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiCiAgICAgaW5rc2NhcGU6ZG9jdW1lbnQtdW5pdHM9Im1tIgogICAgIHNob3dncmlkPSJmYWxzZSIgLz48ZGVmcwogICAgIGlkPSJkZWZzNTMyMSI+PHN0eWxlCiAgICAgICBpZD0ic3R5bGUxMzIiPi5jbHMtMXtmaWxsOm5vbmU7fS5jbHMtMntjbGlwLXBhdGg6dXJsKCNjbGlwLXBhdGgpO30uY2xzLTN7aXNvbGF0aW9uOmlzb2xhdGU7b3BhY2l0eTowLjI7fS5jbHMtNHtmaWxsOiM1NGM1Zjg7fS5jbHMtNXtmaWxsOiMwMTU3OWI7fS5jbHMtNntmaWxsOnVybCgjbGluZWFyLWdyYWRpZW50KTt9LmNscy03e2ZpbGw6IzI5YjZmNjt9LmNscy04e2ZpbGw6dXJsKCNyYWRpYWwtZ3JhZGllbnQpO308L3N0eWxlPjxmaWx0ZXIKICAgICAgIGlua3NjYXBlOmNvbGxlY3Q9ImFsd2F5cyIKICAgICAgIHN0eWxlPSJjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM6c1JHQiIKICAgICAgIGlkPSJmaWx0ZXI5NjIyIgogICAgICAgeD0iLTAuMDQ3NDcyMTE2IgogICAgICAgeT0iLTAuMDQwMTg2MTE4IgogICAgICAgd2lkdGg9IjEuMDk0OTQ0MiIKICAgICAgIGhlaWdodD0iMS4wODAzNzIyIj48ZmVHYXVzc2lhbkJsdXIKICAgICAgICAgaW5rc2NhcGU6Y29sbGVjdD0iYWx3YXlzIgogICAgICAgICBzdGREZXZpYXRpb249IjAuMjc5MTE0NTUiCiAgICAgICAgIGlkPSJmZUdhdXNzaWFuQmx1cjk2MjQiIC8+PC9maWx0ZXI+PC9kZWZzPjxnCiAgICAgaW5rc2NhcGU6bGFiZWw9IkxheWVyIDEiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpZD0ibGF5ZXIxIgogICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC04NC4xMjUwMDMsLTg0LjMxNzk2OCkiPjxwYXRoCiAgICAgICBkPSJtIDE1OS44NTgxOSwxMTYuNTA4NzQgaCAtOS4xMjU1NCBsIC0yLjM2NzU4LC02LjkxODg1IGggLTEyLjY4ODQgbCAtMi4zNjc1OCw2LjkxODg1IGggLTguODk1NjcgbCAxMi42NDI0MiwtMzQuMjI2NDk1IGggMTAuMTU5OTIgeiBtIC0xMy42MzA4NCwtMTMuMTk0MDkgLTQuMjA2NDgsLTEyLjI3NDY1MSAtNC4yMDY0OCwxMi4yNzQ2NTEgeiIKICAgICAgIHN0eWxlPSJmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZTo0Ny4wNzU4cHg7Zm9udC1mYW1pbHk6VmVyZGFuYTstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOidWZXJkYW5hIEJvbGQnO2ZpbGw6I2ZmZjI3NTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS40MTExMTtwYWludC1vcmRlcjptYXJrZXJzIHN0cm9rZSBmaWxsO2ZpbHRlcjp1cmwoI2ZpbHRlcjk2MjIpIgogICAgICAgaWQ9InBhdGgxMDU2MiIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuOTU5NTQ0MTgsMCwwLDEuMDQyMTYxNSw2LjYzNDYwNTgsMCkiIC8+PHBhdGgKICAgICAgIGQ9Im0gMTYwLjAyNTYsMTIxLjQyMDkyIGggLTguNzU2MzYgbCAtMi4yNzE3OSwtNy4yMTA1NiBoIC0xMi4xNzUwOCBsIC0yLjI3MTgsNy4yMTA1NiBoIC04LjUzNTc5IGwgMTIuMTMwOTYsLTM1LjY2OTUzMiBoIDkuNzQ4ODkgeiBtIC0xMy4wNzkzOSwtMTMuNzUwMzcgLTQuMDM2MywtMTIuNzkyMTY4IC00LjAzNjMxLDEyLjc5MjE2OCB6IgogICAgICAgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjQ3LjA3NThweDtmb250LWZhbWlseTpWZXJkYW5hOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246J1ZlcmRhbmEgQm9sZCc7ZmlsbDojZmZmMjc1O3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDowLjM1Mjc3ODtwYWludC1vcmRlcjptYXJrZXJzIHN0cm9rZSBmaWxsIgogICAgICAgaWQ9InBhdGgxMDU2OSIgLz48cGF0aAogICAgICAgaWQ9InBhdGgyMTQxIgogICAgICAgc3R5bGU9ImNvbG9yOiMwMDAwMDA7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjpWZXJkYW5hO2ZpbGw6IzAwMDAwMDtzdHJva2U6I2ZmZmZmZjtzdHJva2Utd2lkdGg6NC41ODYxMTtzdHJva2UtZGFzaGFycmF5Om5vbmU7c3Ryb2tlLW9wYWNpdHk6MTtwYWludC1vcmRlcjptYXJrZXJzIHN0cm9rZSBmaWxsIgogICAgICAgZD0ibSA4Ny4xMDM2NzEsODYuNzczNjI5IDkuNDI1NzgyLDM1LjYyNDcwMSBoIDYuNDMxNjQ3IGwgNi4xODE1NCwtMjQuOTU4Njg1IDYuMzE4NDcsMjQuOTU4Njg1IGggNi41NDQ4MiBsIDkuMjU5OSwtMzUuNjI0NzAxIGggLTEuMjQ4NSAtNS4xNDY0NSBsIC02LjI4MTI4LDI1LjI1Mzc1MSAtNi4yODI4MiwtMjUuMjUzNzUxIGggLTYuMDU4NTQgbCAtNi4yMjI4OCwyNS4wMTEzOTEgLTYuMzIyMDkxLC0yNS4wMTEzOTEgeiIgLz48L2c+PC9zdmc+Cg=="
+    />
+    <style>
+      :root {
+        /* flutter dash color approx */
+        --primary-color: hsl(190, 100%, 60%);
+      }
+
+      html {
+        box-sizing: border-box;
+        font-family: Verdana, Arial, sans-serif;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+        padding: 0px;
+        margin: 0px;
+      }
+
+      svg {
+        display: inline-block;
+      }
+
+      .entry {
+        padding: 0.5em 0.1em;
+        position: relative;
+      }
+
+      .main > .key {
+        padding-right: 0.5rem;
+        min-width: 10%;
+        flex-basis: 10%;
+        letter-spacing: -0.05rem;
+      }
+
+      .entry:nth-child(odd) {
+        background-color: hsl(0, 0%, 90%);
+      }
+
+      .entry:nth-child(even) {
+        background-color: white;
+      }
+
+      .main {
+        display: flex;
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+      }
+
+      .main > * {
+        vertical-align: top;
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-wrap: anywhere;
+        white-space: nowrap;
+        max-width: 45%;
+      }
+
+      .main > .localized-text {
+        flex-grow: 1;
+        padding-right: 1rem;
+      }
+
+      .extra {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+        padding: 0.5rem;
+        display: none;
+        border-left: 0.1rem solid hsl(0, 0%, 50%);
+        border-bottom: 0.1rem solid hsl(0, 0%, 50%);
+      }
+
+      .placeholders {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+        padding: 0.5rem;
+        display: none;
+        border-left: 0.1rem solid hsl(0, 0%, 50%);
+        border-bottom: 0.1rem solid hsl(0, 0%, 50%);
+      }
+
+      .placeholders > ul {
+        margin-left: 1rem;
+      }
+
+      .placeholders-label {
+        margin-left: 1rem;
+      }
+
+      .placeholder-type {
+        font-size: 0.5rem;
+        font-weight: 900;
+        color: white;
+        display: inline-block;
+        background-color: hsl(0, 0%, 60%);
+        padding: 0rem 0.25rem;
+        border: hsl(0, 0%, 60%) solid 0.1rem;
+        border-radius: 0.2rem;
+        transform: translateY(-25%);
+      }
+
+      .placeholder-type.int {
+        background-color: hsl(111, 60%, 60%);
+        border-color: hsl(111, 60%, 60%);
+      }
+
+      .placeholder-type.String {
+        background-color: hsl(200, 60%, 60%);
+        border-color: hsl(200, 60%, 60%);
+      }
+
+      .placeholder-type.DateTime {
+        background-color: hsl(50, 60%, 60%);
+        border-color: hsl(50, 60%, 60%);
+      }
+
+      .arrow {
+        position: relative;
+      }
+
+      .arrow::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 0.35rem solid transparent;
+        border-bottom: 0.35rem solid transparent;
+        border-right: 0.35rem solid transparent;
+        border-left: 0.35rem solid black;
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        transform: translateY(50%);
+        cursor: pointer;
+      }
+
+      .arrow.down::before {
+        transform: translateY(50%) rotate(90deg);
+      }
+
+      .kebab {
+        cursor: pointer;
+        position: absolute;
+        display: inline-block;
+        padding: 0rem 1rem;
+        top: 0.25rem;
+        right: 0.25rem;
+      }
+
+      .kebab figure {
+        width: 0.25rem;
+        height: 0.25rem;
+        border-radius: 100%;
+        background: hsl(0, 0%, 30%);
+        margin: 0.2rem 0rem;
+      }
+
+      .dropdown {
+        background-color: hsl(0, 0%, 100%);
+        position: absolute;
+        right: 100%;
+        top: 0.5em;
+        display: none;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16),
+          0 2px 8px 0 rgba(0, 0, 0, 0.12);
+      }
+
+      .dropdown li {
+        display: block;
+        width: 100%;
+      }
+
+      .dropdown li * {
+        width: 100%;
+        padding: 1em 2em;
+        display: inline-block;
+        white-space: pre;
+      }
+
+      .dropdown li *:hover {
+        background: hsl(0, 0%, 90%);
+      }
+
+      .dropdown.active {
+        z-index: 1;
+        display: block;
+      }
+
+      .delete-button {
+        background-color: hsl(0, 90%, 60%);
+        color: hsl(0, 0%, 100%);
+      }
+
+      .dropdown li .delete-button:hover {
+        background-color: hsl(0, 60%, 45%);
+      }
+
+      .active-long-text-wrapping {
+        white-space: normal;
+      }
+
+      .dialog-key {
+        display: inline-block;
+        margin-right: 0.25rem;
+        width: fit-content;
+        font-size: 1rem;
+        font-weight: 900;
+        background-color: var(--primary-color);
+        padding: 0.15rem 0.75rem;
+        border: var(--primary-color) solid 0.1rem;
+        border-radius: 0.2rem;
+        /* transform: translateY(-25%); */
+      }
+
+      .dialog-lang {
+        font-size: 1.15rem;
+        padding: 0.5rem 0rem;
+        font-weight: 900;
+        margin-top: 1.25rem;
+      }
+
+      .dialog-lang-textarea {
+        font-size: 1rem;
+        min-width: 50%;
+        max-width: 70%;
+        min-height: 10rem;
+      }
+
+      .blurred {
+        filter: blur(10px);
+      }
+
+      .top-ribbon {
+        position: sticky;
+        top: 0rem;
+        z-index: 1;
+        background-color: var(--primary-color);
+      }
+
+      .bottom-ribbon {
+        gap: 0 1rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+        position: fixed;
+        bottom: 0rem;
+        width: 100%;
+        background-color: var(--primary-color);
+        padding: 0rem 0.5rem;
+      }
+
+      .action-button-label {
+        display: inline-flex;
+        cursor: pointer;
+        padding: 1.25rem 1rem;
+        background-color: hsl(0, 0%, 40%);
+        color: hsl(0, 0%, 95%);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .action-button-label:hover {
+        background-color: hsl(0, 0%, 50%);
+      }
+
+      .action-button {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+        gap: 1rem;
+      }
+
+      .action-button > svg {
+        width: 1.75rem;
+      }
+
+      .action-button > span {
+        font-size: 1.1rem;
+        font-weight: 900;
+      }
+
+      .action-button-label input {
+        width: 0px;
+        height: 0px;
+        border: 0px;
+      }
+
+      .action-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        bottom: 100%;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16),
+          0 2px 8px 0 rgba(0, 0, 0, 0.12);
+      }
+
+      .action-container {
+        min-width: 2rem;
+        padding: 1rem;
+        cursor: pointer;
+      }
+
+      .action-container:hover > *:first-child {
+        display: flex;
+      }
+
+      .deactivated {
+        display: none !important;
+      }
+
+      .webarb-banner {
+        margin-left: auto;
+      }
+
+      .webarb-banner > img {
+        height: 1.75rem;
+      }
+
+      #table {
+        background-color: var(--primary-color);
+        padding: 0.4rem 0.3rem 4rem;
+      }
+
+      #edit-key-modal-dialog {
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        z-index: 1;
+        background-color: hsla(0, 0%, 50%, 0.7);
+        display: none;
+      }
+
+      #edit-key-modal-dialog.active-modal-dialog {
+        display: block;
+      }
+
+      #modal-dialog-close-button {
+        cursor: pointer;
+        color: hsl(0, 0%, 40%);
+        font-weight: 900;
+        font-size: 1.5rem;
+        float: right;
+        line-height: 1;
+        text-align: center;
+      }
+
+      #dialog-placeholders-container {
+        float: right;
+        width: calc(30% - 2.5rem);
+        padding: 0.5rem;
+        word-wrap: break-word;
+        margin-right: 1rem;
+      }
+
+      #modal-dialog-close-button:hover {
+        color: hsl(0, 0%, 25%);
+      }
+
+      #edit-dialog {
+        background-color: hsl(0, 0%, 100%);
+        height: 75%;
+        width: 75%;
+        margin: auto;
+        margin-top: calc((100% - 75%) / 4);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        overflow: auto;
+        box-shadow: 0rem 0rem 1.5rem hsl(0, 0%, 30%);
+      }
+
+      #save-entry {
+        background-color: hsl(111, 60%, 60%);
+        border: hsl(111, 60%, 60%) solid 0.1rem;
+        cursor: pointer;
+      }
+      #save-entry:hover {
+        background-color: hsl(111, 60%, 45%);
+        border: hsl(111, 60%, 45%) solid 0.1rem;
+      }
+
+      #thead {
+        padding: 0.25rem 0.4rem;
+      }
+
+      #thead * {
+        display: inline-block;
+        font-weight: 900;
+        flex-basis: 0%;
+      }
+
+      #thead > .tr {
+        padding: 0.2rem 0rem;
+        width: 100%;
+        display: flex;
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+      }
+
+      #thead > .tr > [class|="lang"] {
+        flex-grow: 1;
+        padding-right: 1rem;
+      }
+
+      #thead > .tr > .key {
+        min-width: 10%;
+        flex-basis: 10%;
+        padding-right: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="edit-key-modal-dialog">
+      <div id="edit-dialog">
+        <span id="modal-dialog-close-button">&times;</span>
+        <span id="dialog-placeholders-container">
+          <div class="arrow"></div>
+          <div class="placeholders-label">Placeholders</div>
+          <div class="placeholders">
+            <ul></ul>
+          </div>
+        </span>
+        <div class="dialog-key" id="save-entry">Save</div>
+        <div class="dialog-key message-key">key</div>
+        <div class="dialog-lang" data-lang="lang-0">lang-0</div>
+        <textarea
+          class="dialog-lang-textarea"
+          name="lang-0"
+          id="lang-0"
+        ></textarea>
+        <div class="dialog-lang" data-lang="lang-1">lang-1</div>
+        <textarea
+          class="dialog-lang-textarea"
+          name="lang-1"
+          id="lang-1"
+        ></textarea>
+      </div>
+    </div>
+    <div class="top-ribbon">
+      <div id="thead">
+        <div class="tr">
+          <div class="key">Keys</div>
+          <div class="lang-0">Language 1 Strings</div>
+          <div class="lang-1">Language 2 Strings</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-content flex-container">
+      <div id="table">
+        <div id="tbody"></div>
+      </div>
+    </div>
+    <div class="bottom-ribbon">
+      <div class="load action-container">
+        <div class="action-menu load">
+          <label class="action-button-label" for="file-0"
+            ><input id="file-0" type="file" />Load First File</label
+          >
+          <label class="action-button-label" for="file-1"
+            ><input id="file-1" type="file" />Load Second File</label
+          >
+        </div>
+        <div class="action-button load">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M17 15V18M17 21V18M17 18H14M17 18H20"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+          ><span>Load File</span>
+        </div>
+      </div>
+      <div class="save action-container">
+        <div class="action-menu save">
+          <label class="action-button-label" for="save-file-0"
+            ><input id="save-file-0" type="button" value="save-file-0" />Save
+            First File
+          </label>
+          <label class="action-button-label" for="save-file-1"
+            ><input id="save-file-1" type="button" value="save-file-0" />Save
+            Second File
+          </label>
+        </div>
+        <div class="action-button save">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M9.163 2.819C9 3.139 9 3.559 9 4.4V11H7.803c-.883 0-1.325 0-1.534.176a.75.75 0 0 0-.266.62c.017.274.322.593.931 1.232l4.198 4.401c.302.318.453.476.63.535a.749.749 0 0 0 .476 0c.177-.059.328-.217.63-.535l4.198-4.4c.61-.64.914-.96.93-1.233a.75.75 0 0 0-.265-.62C17.522 11 17.081 11 16.197 11H15V4.4c0-.84 0-1.26-.164-1.581a1.5 1.5 0 0 0-.655-.656C13.861 2 13.441 2 12.6 2h-1.2c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656zM5 21a1 1 0 0 0 1 1h12a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z"
+            /></svg
+          ><span>Save File</span>
+        </div>
+      </div>
+      <div class="webarb-banner">
+        <img
+          alt="WebArb-banner"
+          src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iMjAxLjkwMzU5bW0iCiAgIGhlaWdodD0iMzguNzgyODcxbW0iCiAgIHZpZXdCb3g9IjAgMCAyMDEuOTAzNTkgMzguNzgyODcxIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmc1MzI0IgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzCiAgICAgaWQ9ImRlZnM1MzIxIj48c3R5bGUKICAgICAgIGlkPSJzdHlsZTEzMiI+LmNscy0xe2ZpbGw6bm9uZTt9LmNscy0ye2NsaXAtcGF0aDp1cmwoI2NsaXAtcGF0aCk7fS5jbHMtM3tpc29sYXRpb246aXNvbGF0ZTtvcGFjaXR5OjAuMjt9LmNscy00e2ZpbGw6IzU0YzVmODt9LmNscy01e2ZpbGw6IzAxNTc5Yjt9LmNscy02e2ZpbGw6dXJsKCNsaW5lYXItZ3JhZGllbnQpO30uY2xzLTd7ZmlsbDojMjliNmY2O30uY2xzLTh7ZmlsbDp1cmwoI3JhZGlhbC1ncmFkaWVudCk7fTwvc3R5bGU+PGZpbHRlcgogICAgICAgc3R5bGU9ImNvbG9yLWludGVycG9sYXRpb24tZmlsdGVyczpzUkdCIgogICAgICAgaWQ9ImZpbHRlcjk2MjIiCiAgICAgICB4PSItMC4wMTU4MDM1NCIKICAgICAgIHk9Ii0wLjA0MDE4NjExOCIKICAgICAgIHdpZHRoPSIxLjAyODcyMTciCiAgICAgICBoZWlnaHQ9IjEuMDgwMzcyMiI+PGZlR2F1c3NpYW5CbHVyCiAgICAgICAgIHN0ZERldmlhdGlvbj0iMC4yNzkxMTQ1NSIKICAgICAgICAgaWQ9ImZlR2F1c3NpYW5CbHVyOTYyNCIgLz48L2ZpbHRlcj48L2RlZnM+PGcKICAgICBpZD0ibGF5ZXIxIgogICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yNy41OTU3NzcsLTg0LjMxNzk2OCkiPjxnCiAgICAgICBpZD0iZzk2MzIiCiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2LjYzNDYwNTgpIgogICAgICAgY2xpcC1wYXRoPSJub25lIj48ZwogICAgICAgICBhcmlhLWxhYmVsPSJBUkIiCiAgICAgICAgIHRyYW5zZm9ybT0ic2NhbGUoMC45NTk1NDQxOCwxLjA0MjE2MTUpIgogICAgICAgICBpZD0idGV4dDU1MzgtNSIKICAgICAgICAgc3R5bGU9ImZvbnQtc2l6ZTo0Ny4wNzU4cHg7ZmlsbDojZmZmMjc1O3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjQxMTExO3BhaW50LW9yZGVyOm1hcmtlcnMgc3Ryb2tlIGZpbGw7ZmlsdGVyOnVybCgjZmlsdGVyOTYyMikiPjxwYXRoCiAgICAgICAgICAgZD0ibSAxNTkuODU4MTksMTE2LjUwODc0IGggLTkuMTI1NTQgbCAtMi4zNjc1OCwtNi45MTg4NSBoIC0xMi42ODg0IGwgLTIuMzY3NTgsNi45MTg4NSBoIC04Ljg5NTY3IGwgMTIuNjQyNDIsLTM0LjIyNjQ5NSBoIDEwLjE1OTkyIHogbSAtMTMuNjMwODQsLTEzLjE5NDA5IC00LjIwNjQ4LC0xMi4yNzQ2NTEgLTQuMjA2NDgsMTIuMjc0NjUxIHoiCiAgICAgICAgICAgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6VmVyZGFuYTstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOidWZXJkYW5hIEJvbGQnIgogICAgICAgICAgIGlkPSJwYXRoMTA1NjIiIC8+PHBhdGgKICAgICAgICAgICBkPSJtIDE4My45NzA3NCw5Mi43NjM5NjYgcSAwLC0xLjI4NzIyOSAtMC41Mjg2OCwtMi4yMDY2NzggLTAuNTI4NjgsLTAuOTE5NDQ5IC0xLjgxNTkxLC0xLjQ0ODEzMyAtMC44OTY0NywtMC4zNjc3NzkgLTIuMDkxNzUsLTAuNDM2NzM4IC0xLjE5NTI4LC0wLjA5MTk0IC0yLjc4MTMzLC0wLjA5MTk0IGggLTMuMTk1MDkgdiA5LjIxNzQ3OSBoIDIuNzEyMzcgcSAyLjExNDc0LDAgMy41Mzk4OCwtMC4yMDY4NzYgMS40MjUxNSwtMC4yMDY4NzYgMi4zOTA1NywtMC45NDI0MzYgMC45MTk0NSwtMC43MTI1NzMgMS4zMzMyLC0xLjU2MzA2MyAwLjQzNjc0LC0wLjg3MzQ3NyAwLjQzNjc0LC0yLjMyMTYxIHogbSAxMy43Njg3NSwyMy43NDQ3NzQgaCAtMTAuNzgwNTQgbCAtOS4zMzI0MSwtMTIuNTUwNDggaCAtNC4wNjg1NiB2IDEyLjU1MDQ4IGggLTguNzgwNzQgViA4Mi4yODIyNDUgaCAxNC44MDMxMyBxIDMuMDM0MTgsMCA1LjIxNzg4LDAuMzQ0NzkzIDIuMTgzNjksMC4zNDQ3OTQgNC4wOTE1NSwxLjQ5NDEwNSAxLjkzMDg0LDEuMTQ5MzEyIDMuMDU3MTYsMi45ODgyMSAxLjE0OTMyLDEuODE1OTEzIDEuMTQ5MzIsNC41NzQyNiAwLDMuNzkyNzI5IC0xLjc2OTk0LDYuMTgzMjk3IC0xLjc0Njk2LDIuMzkwNTcgLTUuMDExLDMuOTc2NjIgeiIKICAgICAgICAgICBzdHlsZT0iZm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpWZXJkYW5hOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246J1ZlcmRhbmEgQm9sZCciCiAgICAgICAgICAgaWQ9InBhdGgxMDU2NCIgLz48cGF0aAogICAgICAgICAgIGQ9Im0gMjMwLjg4NTY1LDEwNi4wMjcwMiBxIDAsMi40ODI1MSAtMS4wMTE0LDQuNDM2MzQgLTAuOTg4NDEsMS45NTM4MyAtMi43MzUzNiwzLjI0MTA2IC0yLjAyMjc5LDEuNTE3MDkgLTQuNDU5MzMsMi4xNjA3MSAtMi40MTM1NSwwLjY0MzYxIC02LjEzNzMyLDAuNjQzNjEgSCAyMDEuNjAxMTkgViA4Mi4yODIyNDUgaCAxMy4yODYwNCBxIDQuMTM3NTIsMCA2LjA0NTM4LDAuMjc1ODM1IDEuOTMwODQsMC4yNzU4MzQgMy44MTU3MSwxLjIxODI3IDEuOTUzODMsMC45ODg0MDggMi44OTYyNywyLjY2NjQwMyAwLjk2NTQyLDEuNjU1MDA4IDAuOTY1NDIsMy43OTI3MjggMCwyLjQ4MjUxMyAtMS4zMTAyMiw0LjM5MDM3IC0xLjMxMDIxLDEuODg0ODcxIC0zLjcwMDc4LDIuOTQyMjM4IHYgMC4xODM4ODkgcSAzLjM1NTk5LDAuNjY2NjAxIDUuMzA5ODIsMi43NTgzNTIgMS45NzY4MiwyLjA5MTc0IDEuOTc2ODIsNS41MTY2OSB6IE0gMjE5LjU3NjQyLDkxLjk1OTQ0OCBxIDAsLTAuODUwNDkgLTAuNDM2NzQsLTEuNzAwOTgxIC0wLjQxMzc1LC0wLjg1MDQ5MSAtMS40OTQxLC0xLjI2NDI0MyAtMC45NjU0MywtMC4zNjc3NzkgLTIuNDEzNTYsLTAuMzkwNzY2IC0xLjQyNTE0LC0wLjA0NTk3IC00LjAyMjU5LC0wLjA0NTk3IGggLTAuODI3NSB2IDcuMjQwNjYzIGggMS4zNzkxNyBxIDIuMDkxNzUsMCAzLjU2Mjg3LC0wLjA2ODk2IDEuNDcxMTIsLTAuMDY4OTYgMi4zMjE2MSwtMC40NTk3MjUgMS4xOTUyOCwtMC41Mjg2ODMgMS41NjMwNiwtMS4zNTYxODcgMC4zNjc3OCwtMC44NTA0OTEgMC4zNjc3OCwtMS45NTM4MzEgeiBtIDIuMTYwNzEsMTMuOTI5NjUyIHEgMCwtMS42MzIwMiAtMC42NDM2MiwtMi41MDU0OSAtMC42MjA2MywtMC44OTY0NyAtMi4xMzc3MiwtMS4zMzMyMSAtMS4wMzQzOCwtMC4yOTg4MiAtMi44NTAyOSwtMC4zMjE4IC0xLjgxNTkxLC0wLjAyMyAtMy43OTI3MywtMC4wMjMgaCAtMS45MzA4NCB2IDguNTI3ODkgaCAwLjY0MzYxIHEgMy43MjM3NywwIDUuMzMyODEsLTAuMDIzIDEuNjA5MDMsLTAuMDIzIDIuOTY1MjIsLTAuNTk3NjUgMS4zNzkxOCwtMC41NzQ2NSAxLjg4NDg3LC0xLjUxNzA5IDAuNTI4NjksLTAuOTY1NDIgMC41Mjg2OSwtMi4yMDY2OCB6IgogICAgICAgICAgIHN0eWxlPSJmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OlZlcmRhbmE7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjonVmVyZGFuYSBCb2xkJyIKICAgICAgICAgICBpZD0icGF0aDEwNTY2IiAvPjwvZz48ZwogICAgICAgICBhcmlhLWxhYmVsPSJBUkIiCiAgICAgICAgIHRyYW5zZm9ybT0ic2NhbGUoMC45NTk1NDQxOSwxLjA0MjE2MTUpIgogICAgICAgICBpZD0idGV4dDU1MzgiCiAgICAgICAgIHN0eWxlPSJmb250LXNpemU6NDcuMDc1OHB4O2ZpbGw6I2ZmZjI3NTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MC4zNTI3Nzg7cGFpbnQtb3JkZXI6bWFya2VycyBzdHJva2UgZmlsbCI+PHBhdGgKICAgICAgICAgICBkPSJtIDE1OS44NTgxOSwxMTYuNTA4NzQgaCAtOS4xMjU1NCBsIC0yLjM2NzU4LC02LjkxODg1IGggLTEyLjY4ODQgbCAtMi4zNjc1OCw2LjkxODg1IGggLTguODk1NjcgbCAxMi42NDI0MiwtMzQuMjI2NDk1IGggMTAuMTU5OTIgeiBtIC0xMy42MzA4NCwtMTMuMTk0MDkgLTQuMjA2NDgsLTEyLjI3NDY1MSAtNC4yMDY0OCwxMi4yNzQ2NTEgeiIKICAgICAgICAgICBzdHlsZT0iZm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpWZXJkYW5hOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246J1ZlcmRhbmEgQm9sZCciCiAgICAgICAgICAgaWQ9InBhdGgxMDU2OSIgLz48cGF0aAogICAgICAgICAgIGQ9Im0gMTgzLjk3MDc0LDkyLjc2Mzk2NiBxIDAsLTEuMjg3MjI5IC0wLjUyODY4LC0yLjIwNjY3OCAtMC41Mjg2OCwtMC45MTk0NDkgLTEuODE1OTEsLTEuNDQ4MTMzIC0wLjg5NjQ3LC0wLjM2Nzc3OSAtMi4wOTE3NSwtMC40MzY3MzggLTEuMTk1MjgsLTAuMDkxOTQgLTIuNzgxMzMsLTAuMDkxOTQgaCAtMy4xOTUwOSB2IDkuMjE3NDc5IGggMi43MTIzNyBxIDIuMTE0NzQsMCAzLjUzOTg4LC0wLjIwNjg3NiAxLjQyNTE1LC0wLjIwNjg3NiAyLjM5MDU3LC0wLjk0MjQzNiAwLjkxOTQ1LC0wLjcxMjU3MyAxLjMzMzIsLTEuNTYzMDYzIDAuNDM2NzQsLTAuODczNDc3IDAuNDM2NzQsLTIuMzIxNjEgeiBtIDEzLjc2ODc1LDIzLjc0NDc3NCBoIC0xMC43ODA1NCBsIC05LjMzMjQxLC0xMi41NTA0OCBoIC00LjA2ODU2IHYgMTIuNTUwNDggaCAtOC43ODA3NCBWIDgyLjI4MjI0NSBoIDE0LjgwMzEzIHEgMy4wMzQxOCwwIDUuMjE3ODgsMC4zNDQ3OTMgMi4xODM2OSwwLjM0NDc5NCA0LjA5MTU1LDEuNDk0MTA1IDEuOTMwODQsMS4xNDkzMTIgMy4wNTcxNiwyLjk4ODIxIDEuMTQ5MzIsMS44MTU5MTMgMS4xNDkzMiw0LjU3NDI2IDAsMy43OTI3MjkgLTEuNzY5OTQsNi4xODMyOTcgLTEuNzQ2OTYsMi4zOTA1NyAtNS4wMTEsMy45NzY2MiB6IgogICAgICAgICAgIHN0eWxlPSJmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OlZlcmRhbmE7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjonVmVyZGFuYSBCb2xkJyIKICAgICAgICAgICBpZD0icGF0aDEwNTcxIiAvPjxwYXRoCiAgICAgICAgICAgZD0ibSAyMzAuODg1NjUsMTA2LjAyNzAyIHEgMCwyLjQ4MjUxIC0xLjAxMTQsNC40MzYzNCAtMC45ODg0MSwxLjk1MzgzIC0yLjczNTM2LDMuMjQxMDYgLTIuMDIyNzksMS41MTcwOSAtNC40NTkzMywyLjE2MDcxIC0yLjQxMzU1LDAuNjQzNjEgLTYuMTM3MzIsMC42NDM2MSBIIDIwMS42MDExOSBWIDgyLjI4MjI0NSBoIDEzLjI4NjA0IHEgNC4xMzc1MiwwIDYuMDQ1MzgsMC4yNzU4MzUgMS45MzA4NCwwLjI3NTgzNCAzLjgxNTcxLDEuMjE4MjcgMS45NTM4MywwLjk4ODQwOCAyLjg5NjI3LDIuNjY2NDAzIDAuOTY1NDIsMS42NTUwMDggMC45NjU0MiwzLjc5MjcyOCAwLDIuNDgyNTEzIC0xLjMxMDIyLDQuMzkwMzcgLTEuMzEwMjEsMS44ODQ4NzEgLTMuNzAwNzgsMi45NDIyMzggdiAwLjE4Mzg4OSBxIDMuMzU1OTksMC42NjY2MDEgNS4zMDk4MiwyLjc1ODM1MiAxLjk3NjgyLDIuMDkxNzQgMS45NzY4Miw1LjUxNjY5IHogTSAyMTkuNTc2NDIsOTEuOTU5NDQ4IHEgMCwtMC44NTA0OSAtMC40MzY3NCwtMS43MDA5ODEgLTAuNDEzNzUsLTAuODUwNDkxIC0xLjQ5NDEsLTEuMjY0MjQzIC0wLjk2NTQzLC0wLjM2Nzc3OSAtMi40MTM1NiwtMC4zOTA3NjYgLTEuNDI1MTQsLTAuMDQ1OTcgLTQuMDIyNTksLTAuMDQ1OTcgaCAtMC44Mjc1IHYgNy4yNDA2NjMgaCAxLjM3OTE3IHEgMi4wOTE3NSwwIDMuNTYyODcsLTAuMDY4OTYgMS40NzExMiwtMC4wNjg5NiAyLjMyMTYxLC0wLjQ1OTcyNSAxLjE5NTI4LC0wLjUyODY4MyAxLjU2MzA2LC0xLjM1NjE4NyAwLjM2Nzc4LC0wLjg1MDQ5MSAwLjM2Nzc4LC0xLjk1MzgzMSB6IG0gMi4xNjA3MSwxMy45Mjk2NTIgcSAwLC0xLjYzMjAyIC0wLjY0MzYyLC0yLjUwNTQ5IC0wLjYyMDYzLC0wLjg5NjQ3IC0yLjEzNzcyLC0xLjMzMzIxIC0xLjAzNDM4LC0wLjI5ODgyIC0yLjg1MDI5LC0wLjMyMTggLTEuODE1OTEsLTAuMDIzIC0zLjc5MjczLC0wLjAyMyBoIC0xLjkzMDg0IHYgOC41Mjc4OSBoIDAuNjQzNjEgcSAzLjcyMzc3LDAgNS4zMzI4MSwtMC4wMjMgMS42MDkwMywtMC4wMjMgMi45NjUyMiwtMC41OTc2NSAxLjM3OTE4LC0wLjU3NDY1IDEuODg0ODcsLTEuNTE3MDkgMC41Mjg2OSwtMC45NjU0MiAwLjUyODY5LC0yLjIwNjY4IHoiCiAgICAgICAgICAgc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6VmVyZGFuYTstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOidWZXJkYW5hIEJvbGQnIgogICAgICAgICAgIGlkPSJwYXRoMTA1NzMiIC8+PC9nPjwvZz48dGV4dAogICAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtc2l6ZTo0Ni4zNDM4cHg7Zm9udC1mYW1pbHk6VmVyZGFuYTstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOlZlcmRhbmE7ZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjkzMTAxO3N0cm9rZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIgogICAgICAgeD0iMjYuNDc5NDMxIgogICAgICAgeT0iMTIxLjQzMzg0IgogICAgICAgaWQ9InRleHQxODEwIj48dHNwYW4KICAgICAgICAgaWQ9InRzcGFuMTgwOCIKICAgICAgICAgc3R5bGU9InN0cm9rZS13aWR0aDoxLjkzMTAxIgogICAgICAgICB4PSIyNi40Nzk0MzEiCiAgICAgICAgIHk9IjEyMS40MzM4NCI+V2ViPC90c3Bhbj48L3RleHQ+PC9nPjwvc3ZnPgo="
+        />
+      </div>
+    </div>
+    <script>
+      var didFileLoad = false;
+      var lang0locale;
+      var lang1locale;
+
+      const E = {
+        missingAtAtLocaleMetadataError: "ERROR: Missing @@local metadata",
+        supplementaryKeyExistsWithoutMainKeyError:
+          "ERROR: A supplementary key exists without a main key. Key: ",
+        placeholderTypeUndefinedError:
+          "Placeholder Type Undefined Error. Key: ",
+        convertJsonToArbLocaleIsMissing:
+          "convertJsonToArb was called without a Locale",
+      };
+
+      $(function () {
+        if (
+          !window.File ||
+          !window.FileReader ||
+          !window.FileList ||
+          !window.Blob
+        ) {
+          alert("The File APIs are not fully supported in this browser.");
+          return;
+        }
+
+        $("#file-0").on("change", handleSelectedFile);
+        $("#file-1").on("change", handleSelectedFile);
+        makeSaveFileClickable(0);
+        makeSaveFileClickable(1);
+      });
+
+      function convertJsonToArb(json, locale) {
+        if (!locale) {
+          console.error("locale: ", locale);
+          handleError(E.convertJsonToArbLocaleIsMissing);
+          return;
+        }
+
+        let arb = {
+          "@@locale": locale,
+        };
+
+        for (const key in json) {
+          if (Object.hasOwnProperty.call(json, key)) {
+            const text = json[key].text;
+            const extra = json[key].extra;
+
+            arb[key] = text;
+            arb[`@${key}`] = extra;
+          }
+        }
+
+        return arb;
+      }
+
+      function handleSelectedFile() {
+        let input = this;
+        let id = input.id === "file-0" ? 0 : 1;
+
+        if (!input.files) {
+          alert(
+            "This browser doesn't seem to support the `files` property of file inputs."
+          );
+        } else if (!input.files[0]) {
+          alert("Please select a file before clicking 'Load'");
+        } else {
+          let file = input.files[0];
+          let fr = new FileReader();
+          let text;
+          fr.onload = () => {
+            text = fr.result;
+            inflateHtmlFromJson(id, JSON.parse(text));
+          };
+          fr.readAsText(file);
+        }
+      }
+
+      function inflateHtmlFromJson(id, json) {
+        let rows = "";
+
+        if (!json.hasOwnProperty("@@locale")) {
+          handleError(E.missingAtAtLocaleMetadataError, true);
+          return;
+        }
+
+        const locale = json["@@locale"];
+        delete json["@@locale"];
+
+        id == 0 ? (lang0locale = locale) : (lang1locale = locale);
+
+        json = prepareJSON(json);
+
+        if (!window.didFileLoad) {
+          $(`#thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
+
+          for (const key in json) {
+            rows = rows + createEntryFromKeyJSON(id, locale, key, json);
+          }
+
+          $("#table #tbody").html(rows);
+        } else {
+          $(`#thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
+
+          for (const key in json) {
+            let elem = $(`#${key} ~ div[data-lang="null"]`);
+            elem.attr("data-lang", `${locale}`);
+            elem.text(`${json[key].text}`);
+          }
+        }
+
+        if (!window.didFileLoad) {
+          makeArrowClickable();
+          makeKebabClickable();
+          makeSaveEntryClickable();
+          makeDropdownEditButtonClickable();
+          makeCloseButtonModalDialogClickable();
+        }
+
+        window.didFileLoad = !window.didFileLoad;
+      }
+
+      function handleError(string, alertUser = false) {
+        console.error(string);
+        if (alertUser) {
+          alert(string);
+        }
+      }
+
+      function prepareJSON(json) {
+        for (const key in json) {
+          if (json.hasOwnProperty(key)) {
+            if (key.charAt(0) == "@") {
+              //check if the main key exists then inject it into extra then delete the key with @
+              let mainKey = key.substring(1);
+
+              if (!json.hasOwnProperty(mainKey)) {
+                handleError(
+                  E.supplementaryKeyExistsWithoutMainKeyError + key,
+                  true
+                );
+                return;
+              }
+
+              json[mainKey] = { text: json[mainKey], extra: { ...json[key] } };
+              delete json[key];
+            }
+          }
+        }
+
+        return json;
+      }
+
+      function makeArrowClickable() {
+        $(".arrow").on("click", function () {
+          let arrowElement = $(this);
+          arrowElement.toggleClass("down");
+          let mainElement = arrowElement.next();
+          let extraElement = mainElement.next();
+          mainElement.children().toggleClass("active-long-text-wrapping");
+          extraElement.toggle();
+        });
+      }
+
+      function makeKebabClickable() {
+        let kebab = $(".kebab");
+        kebab.on("click", function () {
+          let dropdown = $(this).children().last();
+          let isClickedOnDropdownActive = dropdown.hasClass("active");
+          $(".dropdown.active").removeClass("active");
+          if (!isClickedOnDropdownActive) {
+            dropdown.addClass("active");
+          }
+        });
+      }
+
+      function makeSaveEntryClickable() {
+        let saveEntryButton = $("#save-entry");
+        saveEntryButton.on("click", function () {
+          let editDialog = $("#edit-dialog");
+          let messageKey = editDialog
+            .children(".dialog-key.message-key")
+            .text();
+          let lang0 = editDialog.children("#lang-0").val();
+          let lang1 = editDialog.children("#lang-1").val();
+
+          updateEntryLocaleStringsByKey(messageKey, lang0, lang1);
+          toggleModalDialogVisibility();
+        });
+      }
+
+      function makeDropdownEditButtonClickable() {
+        let editButton = $(".edit-button");
+        editButton.on("click", function () {
+          let button = $(this);
+          let entry = button.parentsUntil("#tbody", ".entry");
+          let [json0, json1] = extractDataFromEntryToJSON(entry);
+          fillModalFieldsWithJSONEntryData(json0, json1);
+          toggleModalDialogVisibility();
+        });
+      }
+
+      function updateEntryLocaleStringsByKey(key, lang0, lang1) {
+        let keyElement = $(`#${key}`);
+        let lang0Element = keyElement.next();
+        let lang1Element = lang0Element.next();
+
+        lang0Element.text(lang0);
+        lang1Element.text(lang1);
+      }
+
+      function extractDataFromEntryToJSON(entry) {
+        let main = entry.children(".main");
+        let extra = entry.children(".extra");
+
+        const key = main.children(".key").text();
+        const lang0 = $(main.children(".localized-text")["0"]).text();
+        const lang1 = $(main.children(".localized-text")["1"]).text();
+
+        const description = $(extra.children(".description"))
+          .text()
+          .replace(/^Description:\s/g, "");
+
+        let placeholdersListItems = extra.find("li[data-key]");
+        let placeholders = {};
+
+        placeholdersListItems.each(function () {
+          let li = $(this);
+          let key = li.data("key");
+          let type = li.children(".placeholder-type").data("placeholder-type");
+          let example = $(li.children(".placeholder-example"))
+            .text()
+            .replace(/^example:\s/g, "");
+          placeholders[key] = { type, example };
+        });
+
+        let json0 = {};
+        let json1 = {};
+
+        json0[key] = { text: lang0, extra: {} };
+        description.length > 0
+          ? (json0[key].extra.description = description)
+          : null;
+        Object.keys(placeholders).length > 0
+          ? (json0[key].extra.placeholders = placeholders)
+          : null;
+
+        json1[key] = { text: lang1, extra: {} };
+        description.length > 0
+          ? (json1[key].extra.description = description)
+          : null;
+        Object.keys(placeholders).length > 0
+          ? (json1[key].extra.placeholders = placeholders)
+          : null;
+
+        return [json0, json1];
+      }
+
+      function createEntryFromKeyJSON(id, locale, key, json) {
+        return `<div class="entry">
+
+            <div class="kebab">
+              <figure></figure>
+              <figure></figure>
+              <figure></figure>
+              <ul class="dropdown">
+                <li><div class="edit-button">Edit</div></li>
+                <li class="deactivated"><div class="delete-button">Delete</div></li>
+              </ul>
+            </div>
+
+            <div class="arrow"></div>
+
+            <div class="main">
+              <div class="key" id="${key}">${key}</div>
+              ${
+                id == 0
+                  ? `<div class="localized-text" data-lang="${locale}">${json[key].text}</div>`
+                  : `<div class="localized-text" data-lang="null"></div>`
+              }
+              ${
+                id == 1
+                  ? `<div class="localized-text" data-lang="${locale}">${json[key].text}</div>`
+                  : `<div class="localized-text" data-lang="null"></div>`
+              }
+            </div>
+            ${
+              json[key]?.extra
+                ? `<div class="extra">
+                    ${
+                      json[key].extra?.description
+                        ? `<div class="description">Description: ${json[key].extra.description}</div>`
+                        : ``
+                    }
+                    ${
+                      json[key].extra?.placeholders
+                        ? `
+                          <div class="arrow"></div>
+                          <div class="placeholders-label">Placeholders</div>
+                          <div class="placeholders">
+                            <ul>
+                              ${placeholdersToListItems(
+                                json[key].extra.placeholders
+                              )}
+                            </ul>
+                          </div>
+                          `
+                        : ``
+                    }
+                  </div>`
+                : ``
+            }
+            
+        </div>`.replace(/\>\s+\</g, "><");
+      }
+
+      function placeholdersToListItems(placeholders) {
+        let listItems = "";
+        for (const key in placeholders) {
+          if (placeholders.hasOwnProperty(key)) {
+            const placeholder = placeholders[key];
+            listItems += `
+      <li data-key="${key}">${key}
+      ${
+        placeholder?.type
+          ? `<div
+          class="placeholder-type ${placeholder.type}"
+          data-placeholder-type="${placeholder.type}"
+        >
+          ${placeholder.type}
+        </div>`
+          : handleError(E.placeholderTypeUndefinedError + key, true)
+      }
+        
+        ${
+          placeholder?.example
+            ? `<div class="placeholder-example"><i>example:</i> ${placeholder.example}</div>`
+            : ``
+        }
+      </li>`;
+          }
+        }
+
+        return listItems;
+      }
+
+      function toggleModalDialogVisibility() {
+        $("#edit-key-modal-dialog").toggleClass("active-modal-dialog");
+        toggleBlurAllButSelector("#edit-key-modal-dialog");
+      }
+
+      function makeCloseButtonModalDialogClickable() {
+        $("#modal-dialog-close-button").on("click", function () {
+          toggleModalDialogVisibility();
+        });
+      }
+
+      function toggleBlurAllButSelector(selector) {
+        $(`body > *:not(${selector})`).toggleClass("blurred");
+      }
+
+      function fillModalFieldsWithJSONEntryData(json0, json1) {
+        const key = Object.keys(json0)[0];
+        const lang0 = json0[key].text;
+        const lang1 = json1[key].text;
+        const placeholdersListItems = placeholdersToListItems(
+          json0[key].extra.placeholders
+        );
+
+        let editDialog = $("#edit-dialog");
+        let dialogTitleMessageKey = editDialog.children(
+          ".dialog-key.message-key"
+        );
+        let textArea0 = editDialog.children("textarea#lang-0");
+        let textArea1 = editDialog.children("textarea#lang-1");
+        let lang0Label = editDialog.children(
+          '.dialog-lang[data-lang="lang-0"]'
+        );
+        let lang1Label = editDialog.children(
+          '.dialog-lang[data-lang="lang-1"]'
+        );
+        let placeholdersList = editDialog.find(
+          "#dialog-placeholders-container > .placeholders > ul"
+        );
+
+        $(dialogTitleMessageKey).text(key);
+        $(textArea0).val(lang0);
+        $(textArea1).val(lang1);
+        $(lang0Label).text(lang0locale?.toUpperCase());
+        $(lang1Label).text(lang1locale?.toUpperCase());
+        $(placeholdersList).html(placeholdersListItems);
+      }
+
+      function convertEntriesToJson() {
+        let json0 = {};
+        let json1 = {};
+
+        $(".entry").each(function () {
+          let [tempJson0, tempJson1] = extractDataFromEntryToJSON($(this));
+          json0 = { ...json0, ...tempJson0 };
+          json1 = { ...json1, ...tempJson1 };
+        });
+
+        return [json0, json1];
+      }
+
+      function makeSaveFileClickable(fileId) {
+        if (fileId === 0) {
+          $("#save-file-0").on("click", function () {
+            let [json0] = convertEntriesToJson();
+
+            if (Object.keys(json0).length === 0) {
+              console.info("json0 is empty. nothing to save, returning.");
+              return;
+            }
+
+            let arb = convertJsonToArb(json0, lang0locale);
+            saveDataToFile(
+              JSON.stringify(arb),
+              `app_${lang0locale}.arb`,
+              "text/plain"
+            );
+          });
+        } else if (fileId === 1) {
+          $("#save-file-1").on("click", function () {
+            let [, json1] = convertEntriesToJson();
+
+            if (Object.keys(json1).length === 0) {
+              console.info("json1 is empty. nothing to save, returning.");
+              return;
+            }
+
+            let arb = convertJsonToArb(json1, lang1locale);
+            saveDataToFile(
+              JSON.stringify(arb),
+              `app_${lang1locale}.arb`,
+              "text/plain"
+            );
+          });
+        }
+      }
+
+      function saveDataToFile(content, fileName, contentType) {
+        var a = document.createElement("a");
+        var file = new Blob([content], { type: contentType });
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        a.click();
+      }
+    </script>
+  </body>
+</html>
