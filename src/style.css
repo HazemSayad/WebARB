@@ -1,3 +1,8 @@
+:root {
+  /* flutter dash color approx */
+  --primary-color: hsl(190, 100%, 60%);
+}
+
 html {
   box-sizing: border-box;
   font-family: Verdana, Arial, sans-serif;
@@ -9,6 +14,10 @@ html {
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
+}
+
+svg {
+  display: inline-block;
 }
 
 .entry {
@@ -194,9 +203,9 @@ html {
   width: fit-content;
   font-size: 1rem;
   font-weight: 900;
-  background-color: hsl(190, 100%, 60%);
+  background-color: var(--primary-color);
   padding: 0.15rem 0.75rem;
-  border: hsl(190, 100%, 60%) solid 0.1rem;
+  border: var(--primary-color) solid 0.1rem;
   border-radius: 0.2rem;
   /* transform: translateY(-25%); */
 }
@@ -219,10 +228,96 @@ html {
   filter: blur(10px);
 }
 
+.top-ribbon {
+  position: sticky;
+  top: 0rem;
+  z-index: 1;
+  background-color: var(--primary-color);
+}
+
+.bottom-ribbon {
+  gap: 0 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  position: fixed;
+  bottom: 0rem;
+  width: 100%;
+  background-color: var(--primary-color);
+  padding: 0rem 0.5rem;
+}
+
+.action-button-label {
+  display: inline-flex;
+  cursor: pointer;
+  padding: 1.25rem 1rem;
+  background-color: hsl(0, 0%, 40%);
+  color: hsl(0, 0%, 95%);
+  justify-content: center;
+  align-items: center;
+}
+
+.action-button-label:hover {
+  background-color: hsl(0, 0%, 50%);
+}
+
+.action-button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  gap: 1rem;
+}
+
+.action-button > svg {
+  width: 1.75rem;
+}
+
+.action-button > span {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.action-button-label input {
+  width: 0px;
+  height: 0px;
+  border: 0px;
+}
+
+.action-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  bottom: 100%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+}
+
+.action-container {
+  min-width: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.action-container:hover > *:first-child {
+  display: flex;
+}
+
+.deactivated {
+  display: none !important;
+}
+
+.webarb-banner {
+  margin-left: auto;
+}
+
+.webarb-banner > img {
+  height: 1.75rem;
+}
+
 #table {
-  /* flutter dash color approx */
-  background-color: hsl(190, 100%, 60%);
-  padding: 0.25rem 0.3rem 4rem;
+  background-color: var(--primary-color);
+  padding: 0.4rem 0.3rem 4rem;
 }
 
 #edit-key-modal-dialog {
@@ -282,13 +377,18 @@ html {
   border: hsl(111, 60%, 45%) solid 0.1rem;
 }
 
+#thead {
+  padding: 0.25rem 0.4rem;
+}
+
 #thead * {
   display: inline-block;
   font-weight: 900;
-  padding: 0.45rem 0rem;
+  flex-basis: 0%;
 }
 
 #thead > .tr {
+  padding: 0.2rem 0rem;
   width: 100%;
   display: flex;
   padding-left: 1rem;

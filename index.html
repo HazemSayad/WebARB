@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebARB</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/icons/webarb-favicon.svg"
+      type="image/x-icon"
+    />
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -40,24 +45,77 @@
       </div>
     </div>
     <div class="top-ribbon">
-      <label for="file-0">file-0</label>
-      <input id="file-0" type="file" />
-      <label for="file-1">file-1</label>
-      <input id="file-1" type="file" />
+      <div id="thead">
+        <div class="tr">
+          <div class="key">Keys</div>
+          <div class="lang-0">Language 1 Strings</div>
+          <div class="lang-1">Language 2 Strings</div>
+        </div>
+      </div>
     </div>
     <div class="main-content flex-container">
       <div id="table">
-        <div id="thead">
-          <div class="tr">
-            <div class="key">Keys</div>
-            <div class="lang-0">Language 1 Strings</div>
-            <div class="lang-1">Language 2 Strings</div>
-          </div>
-        </div>
         <div id="tbody"></div>
       </div>
     </div>
-    <div class="bottom-ribbon"></div>
+    <div class="bottom-ribbon">
+      <div class="load action-container">
+        <div class="action-menu load">
+          <label class="action-button-label" for="file-0"
+            ><input id="file-0" type="file" />Load First File</label
+          >
+          <label class="action-button-label" for="file-1"
+            ><input id="file-1" type="file" />Load Second File</label
+          >
+        </div>
+        <div class="action-button load">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M17 15V18M17 21V18M17 18H14M17 18H20"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+          ><span>Load File</span>
+        </div>
+      </div>
+      <div class="save action-container">
+        <div class="action-menu save">
+          <label class="action-button-label" for="save-file-0"
+            ><input id="save-file-0" type="button" value="save-file-0" />Save
+            First File
+          </label>
+          <label class="action-button-label" for="save-file-1"
+            ><input id="save-file-1" type="button" value="save-file-0" />Save
+            Second File
+          </label>
+        </div>
+        <div class="action-button save">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M9.163 2.819C9 3.139 9 3.559 9 4.4V11H7.803c-.883 0-1.325 0-1.534.176a.75.75 0 0 0-.266.62c.017.274.322.593.931 1.232l4.198 4.401c.302.318.453.476.63.535a.749.749 0 0 0 .476 0c.177-.059.328-.217.63-.535l4.198-4.4c.61-.64.914-.96.93-1.233a.75.75 0 0 0-.265-.62C17.522 11 17.081 11 16.197 11H15V4.4c0-.84 0-1.26-.164-1.581a1.5 1.5 0 0 0-.655-.656C13.861 2 13.441 2 12.6 2h-1.2c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656zM5 21a1 1 0 0 0 1 1h12a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z"
+            /></svg
+          ><span>Save File</span>
+        </div>
+      </div>
+      <div class="webarb-banner">
+        <img src="./assets/icons/webarb-banner.svg" alt="WebArb-banner" />
+      </div>
+    </div>
     <script src="./src/script.js"></script>
   </body>
 </html>

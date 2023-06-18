@@ -1,14 +1,16 @@
-# WebARB
+# 💪 WebARB
+
+![webarb-banner](./assets/icons/webarb-banner.svg)
 
 This is a repo to help with translating small to medium Flutter projects that use the .arb files for internationalization
 
-# TODO
+# ✅ TODO
 
-- [ ] Support for simple messages (key-value pairs)
-- [ ] Support for `@message` symbol messages (eg: `@helloWorld`)
-  - [ ] Add support for `description`
-  - [ ] Add support for `placeholders`
-    - [ ] Add support for `value - type`
+- [x] Support for simple messages (key-value pairs)
+- [x] Support for `@message` symbol messages (eg: `@helloWorld`)
+  - [x] Add support for `description`
+  - [x] Add support for `placeholders`
+    - [x] Add support for `value - type`
       - [ ] Add support for `value - type: int`
       - [ ] Add support for `value - type: double`
       - [ ] Add support for `value - type: number`
@@ -17,8 +19,11 @@ This is a repo to help with translating small to medium Flutter projects that us
     - [ ] Add support for `value - optionalParameters`
     - [ ] Add support for `messages with plurals`
 - [ ] File name locale detecion support
+- [ ] Add DEV mode with extra features
+  - [ ] Enable delete button under DEV mode
+- [ ] Add support for RTL
 
-# Philosophy Behind WebARB
+# 📜 Philosophy Behind WebARB
 
 What is the most common thing on every machine that a non-technical person use frequently with ease?
 
@@ -28,6 +33,7 @@ Hence why WebARB is an open-source web based internationalization tool to aid tr
 
 The tool **MUST**:
 
+- Not need an account
 - Be easy to use
 - Looks simple
 - Customizable
@@ -35,7 +41,7 @@ The tool **MUST**:
 - Reliable
 - Free
 
-# Who Is This For?
+# 🤔 Who Is This For?
 
 This is a free open-source solution for small to medium projects who do not want to invest in anything big right now (or ever) but still want to be able to internationalize their Flutter applications with ease and no technical jargon.
 
@@ -58,7 +64,7 @@ This is a free open-source solution for small to medium projects who do not want
 - Barely did any babysitting
 - Your app got translated (Hooray!)
 
-# How To Use/Install?
+# 💻 How To Use/Install?
 
 WebARB runs in the browser, so here is how you can run/use it:
 
@@ -66,10 +72,16 @@ WebARB runs in the browser, so here is how you can run/use it:
 - Download the project and open `index.html`
 - Clone the repo to your internationalization directory so it will stay up to date just by simply running `git pull`
 
-# ARB Guidelines
+# 🎓 ARB Guidelines
 
 Guidelines followed while developing this tool came from this link: https://docs.google.com/document/d/10e0saTfAv32OZLRmONy866vnaw0I2jwL8zukykpgWBc
 
-# Warning!
+# 🎁 PR
+
+Pull Requests are welcome! If you find an issue, you can open an issue. Want a feature? Open a an issue. Added something new, open a PR!
+
+**Contributions are welcome!** 🥳
+
+# 🛑 Warning!
 
 Use this tool at your own risk. Browsers can crash, OS'es can crash too, all that will render all your edits and modifications without save **lost**. So be careful!

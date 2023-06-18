@@ -7,6 +7,8 @@ const E = {
   supplementaryKeyExistsWithoutMainKeyError:
     "ERROR: A supplementary key exists without a main key. Key: ",
   placeholderTypeUndefinedError: "Placeholder Type Undefined Error. Key: ",
+  convertJsonToArbLocaleIsMissing:
+    "convertJsonToArb was called without a Locale",
 };
 
 $(function () {
@@ -17,46 +19,32 @@ $(function () {
 
   $("#file-0").on("change", handleSelectedFile);
   $("#file-1").on("change", handleSelectedFile);
+  makeSaveFileClickable(0);
+  makeSaveFileClickable(1);
 });
 
-async function convertArbToJson(map) {
-  for (let k in map.keys) {
-    if (!k[0].contains("@")) {
-      newKey = k;
-      for (var l in _replacementList) {
-        newKey = newKey.replaceAll(l[1], l[0]);
-      }
-      newKey = newKey.replaceAll("numSb", "");
+function convertJsonToArb(json, locale) {
+  if (!locale) {
+    console.error("locale: ", locale);
+    handleError(E.convertJsonToArbLocaleIsMissing);
+    return;
+  }
 
-      //TODO: implement backward convert if needed
-      arbMap[newKey] = _changePlaceHoldersNames(resMap[k]);
-    }
+  let arb = {
+    "@@locale": locale,
+  };
 
-    for (const key in map) {
+  for (const key in json) {
+    if (Object.hasOwnProperty.call(json, key)) {
+      const text = json[key].text;
+      const extra = json[key].extra;
+
+      arb[key] = text;
+      arb[`@${key}`] = extra;
     }
   }
-}
 
-async function convertJsonToArb(map) {
-  {
-    for (let k in resMap.keys) {
-      newKey = k;
-      for (var l in _replacementList) {
-        newKey = newKey.replaceAll(l[0], l[1]);
-      }
-      firstLetterInt = int.tryParse(k[0]);
-      if (firstLetterInt != null) {
-        newKey = newKey.replaceFirst(k[0], "numSb${k[0]}");
-      }
-      ///
-      /// Inside lang strings occurs values like {name-one}
-      /// We have to change their names to the {nameOne} according
-      /// the Dart notations.
-      ///
-
-      arbMap[newKey] = _changePlaceHoldersNames(resMap[k]);
-    }
-  }
+  return arb;
 }
 
 function handleSelectedFile() {
@@ -97,7 +85,7 @@ function inflateHtmlFromJson(id, json) {
   json = prepareJSON(json);
 
   if (!window.didFileLoad) {
-    $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
+    $(`#thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
       rows = rows + createEntryFromKeyJSON(id, locale, key, json);
@@ -105,7 +93,7 @@ function inflateHtmlFromJson(id, json) {
 
     $("#table #tbody").html(rows);
   } else {
-    $(`#table > #thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
+    $(`#thead .lang-${id}`).text(`${locale.toUpperCase()} Strings`);
 
     for (const key in json) {
       let elem = $(`#${key} ~ div[data-lang="null"]`);
@@ -236,8 +224,18 @@ function extractDataFromEntryToJSON(entry) {
 
   let json0 = {};
   let json1 = {};
-  json0[key] = { text: lang0, extra: { description, placeholders } };
-  json1[key] = { text: lang1, extra: { description, placeholders } };
+
+  json0[key] = { text: lang0, extra: {} };
+  description.length > 0 ? (json0[key].extra.description = description) : null;
+  Object.keys(placeholders).length > 0
+    ? (json0[key].extra.placeholders = placeholders)
+    : null;
+
+  json1[key] = { text: lang1, extra: {} };
+  description.length > 0 ? (json1[key].extra.description = description) : null;
+  Object.keys(placeholders).length > 0
+    ? (json1[key].extra.placeholders = placeholders)
+    : null;
 
   return [json0, json1];
 }
@@ -251,7 +249,7 @@ function createEntryFromKeyJSON(id, locale, key, json) {
               <figure></figure>
               <ul class="dropdown">
                 <li><div class="edit-button">Edit</div></li>
-                <li><div class="delete-button">Delete</div></li>
+                <li class="deactivated"><div class="delete-button">Delete</div></li>
               </ul>
             </div>
 
@@ -369,4 +367,61 @@ function fillModalFieldsWithJSONEntryData(json0, json1) {
   $(lang0Label).text(lang0locale?.toUpperCase());
   $(lang1Label).text(lang1locale?.toUpperCase());
   $(placeholdersList).html(placeholdersListItems);
+}
+
+function convertEntriesToJson() {
+  let json0 = {};
+  let json1 = {};
+
+  $(".entry").each(function () {
+    let [tempJson0, tempJson1] = extractDataFromEntryToJSON($(this));
+    json0 = { ...json0, ...tempJson0 };
+    json1 = { ...json1, ...tempJson1 };
+  });
+
+  return [json0, json1];
+}
+
+function makeSaveFileClickable(fileId) {
+  if (fileId === 0) {
+    $("#save-file-0").on("click", function () {
+      let [json0] = convertEntriesToJson();
+
+      if (Object.keys(json0).length === 0) {
+        console.info("json0 is empty. nothing to save, returning.");
+        return;
+      }
+
+      let arb = convertJsonToArb(json0, lang0locale);
+      saveDataToFile(
+        JSON.stringify(arb),
+        `app_${lang0locale}.arb`,
+        "text/plain"
+      );
+    });
+  } else if (fileId === 1) {
+    $("#save-file-1").on("click", function () {
+      let [, json1] = convertEntriesToJson();
+
+      if (Object.keys(json1).length === 0) {
+        console.info("json1 is empty. nothing to save, returning.");
+        return;
+      }
+
+      let arb = convertJsonToArb(json1, lang1locale);
+      saveDataToFile(
+        JSON.stringify(arb),
+        `app_${lang1locale}.arb`,
+        "text/plain"
+      );
+    });
+  }
+}
+
+function saveDataToFile(content, fileName, contentType) {
+  var a = document.createElement("a");
+  var file = new Blob([content], { type: contentType });
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
 }
