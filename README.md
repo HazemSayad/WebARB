@@ -22,6 +22,7 @@ This is a repo to help with translating small to medium Flutter projects that us
 - [ ] Add DEV mode with extra features
   - [ ] Enable delete button under DEV mode
 - [ ] Add support for RTL
+- [ ] Add support for untranslated_messages.json
 
 # 📜 Philosophy Behind WebARB
 
